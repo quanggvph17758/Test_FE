@@ -1,0 +1,43 @@
+<div class="cotainer">
+  <div class="card mt-3">
+    <div class="card-header">
+      <h3>List User</h3>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Full name</th>
+              <th>Email</th>
+              <th>Gender</th>
+              <th>Birthday</th>
+              <th>Address</th>
+              <th colspan="2">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let u of users">
+              <td>#{{u.id}}</td>
+              <td>{{u.fullname}}</td>
+              <td>{{u.email}}</td>
+              <td>{{u.gender}}</td>
+              <td>{{u.birthday | date: 'dd/MM/yyyy'}}</td>
+              <td>{{u.address}}</td>
+              <td>
+                <a (click)="Edit(u)" class="btn btn-warning"> Update </a>
+              </td>
+              <td>
+                <a (click)="Delete(u)" class="btn btn-danger" href=""> Delete </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <button (click)="Create()" class="btn btn-info mb-3" style="margin-left: 10px"> Create </button>
+    </div>
+  </div>
+</div>
