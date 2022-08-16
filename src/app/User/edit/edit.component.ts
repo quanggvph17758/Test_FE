@@ -37,10 +37,10 @@ export class EditComponent implements OnInit {
     });
   }
 
-  Update() {
-    this.service.updateUser(this.user)
+  Update(user:UserModel) {
+    this.service.updateUser(user)
     .subscribe(data => {
-      this.user = data;
+      user = data;
       alert("Update Thành Công!");
       this.router.navigate(["list"]);
     });

@@ -24,7 +24,7 @@ export class UserServiceService {
   }
 
   updateUser(user:UserModel) {
-    return this.http.put<UserModel>(this.url, user);
+    return this.http.put<UserModel>(this.url + "/" + user.id , user);
   }
 
   deleteUser(user:UserModel) {
