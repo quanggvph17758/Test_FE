@@ -29,11 +29,12 @@
           <label>Gender</label>
             <div class="form-check">
               <input formControlName="gender" [(ngModel)]="user.gender" type="radio" class="form-check-input" value="Nam"/>
-              <label> Nam </label>
+              <label> Male </label>
+
             </div>
             <div class="form-check">
               <input formControlName="gender" [(ngModel)]="user.gender" type="radio" class="form-check-input" value="Nữ"/>
-              <label> Nữ </label>
+              <label> Female </label>
             </div>
           </div>
           <small *ngIf="exform.get('gender')?.invalid && exform.get('gender')?.touched" class="text-danger"> gender trống </small>

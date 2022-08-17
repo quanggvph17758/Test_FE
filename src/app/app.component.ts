@@ -16,4 +16,8 @@ export class AppComponent {
     this.router.navigate(["list"]);
   }
 
+  Login() {
+    this.router.navigate(["login"]);
+  }
+
 }
