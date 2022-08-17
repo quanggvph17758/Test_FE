@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserModel } from 'src/app/Model/UserModel';
 import { UserServiceService } from '../../Service/user-service.service';
@@ -11,7 +11,7 @@ import { UserServiceService } from '../../Service/user-service.service';
 export class ListComponent implements OnInit {
 
   users:UserModel[]=[];
-
+  fullname:any;
   constructor(private userSer:UserServiceService, private router:Router) { }
 
   ngOnInit() {
@@ -38,4 +38,31 @@ export class ListComponent implements OnInit {
     this.router.navigate(["create"]);
   }
 
+  Search(){
+    if (this.fullname == "") {
+      this.ngOnInit();
+    } else {
+      this.users = this.users.filter(data => {
+        return data.fullname.toLocaleLowerCase().match(this.fullname.toLocaleLowerCase());
+      });
+    }
+  }
+
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 5;
+  //tableSizes: any = [3, 6, 9, 12];
+
+  fetchPosts(){
+    this.ngOnInit();
+  }
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.fetchPosts();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.fetchPosts();
+  }
 }

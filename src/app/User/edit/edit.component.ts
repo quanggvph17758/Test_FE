@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -9,13 +10,14 @@ import { UserServiceService } from 'src/app/Service/user-service.service';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.css']
 })
+
 export class EditComponent implements OnInit {
 
   constructor(private router:Router, private service:UserServiceService) { }
 
   exform!: FormGroup;
 
-  ngOnInit() {
+  ngOnInit() :void {
     this.Edit();
     this.exform = new FormGroup({
       'fullname': new FormControl(null, Validators.required),
@@ -36,6 +38,7 @@ export class EditComponent implements OnInit {
       this.user=data;
     });
   }
+
 
   Update(user:UserModel) {
     this.service.updateUser(user)
