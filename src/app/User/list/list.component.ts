@@ -29,8 +29,9 @@ export class ListComponent implements OnInit {
   Delete(user:UserModel) {
     this.userSer.deleteUser(user)
     .subscribe(data => {
-      this.users=this.users.filter(p => p! == user);
-      alert("Xóa thành công!")
+      this.users=this.users.filter(u => u! == user);
+      alert("Xóa thành công!");
+      this.router.navigate(["list"]);
     })
   }
 
