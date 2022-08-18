@@ -1,5 +1,5 @@
 import { Component, OnInit, Pipe } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UserModel } from 'src/app/Model/UserModel';
 import { UserServiceService } from '../../Service/user-service.service';
 
@@ -21,22 +21,23 @@ export class ListComponent implements OnInit {
     })
   }
 
+  Create() {
+    this.router.navigate(["create"]);
+  }
+
   Edit(user:UserModel) {
     localStorage.setItem("id", user.id.toFixed());
     this.router.navigate(["edit"]);
   }
+
 
   Delete(user:UserModel) {
     this.userSer.deleteUser(user)
     .subscribe(data => {
       this.users=this.users.filter(u => u! == user);
       alert("Xóa thành công!");
-      this.router.navigate(["list"]);
+      //this.ngOnInit();
     })
-  }
-
-  Create() {
-    this.router.navigate(["create"]);
   }
 
   Search(){

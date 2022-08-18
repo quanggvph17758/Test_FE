@@ -22,7 +22,6 @@ export class EditComponent implements OnInit {
     this.exform = new FormGroup({
       'fullname': new FormControl(null, Validators.required),
       'email': new FormControl(null, [Validators.required, Validators.email]),
-      'password': new FormControl(null, [Validators.required, Validators.minLength(6)]),
       'birthday': new FormControl(null, Validators.required),
       'gender': new FormControl(null, Validators.required),
       'address': new FormControl(null, Validators.required),
@@ -47,5 +46,18 @@ export class EditComponent implements OnInit {
       alert("Update Thành Công!");
       this.router.navigate(["list"]);
     });
+  }
+
+  Reset() {
+    this.user.fullname = "";
+    this.user.email = "";
+    this.user.password = "";
+    this.user.birthday = new Date();
+    this.user.gender = "";
+    this.user.address = "";
+  }
+
+  List() {
+    this.router.navigate(["list"])
   }
 }

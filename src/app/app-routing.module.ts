@@ -6,6 +6,7 @@ import { EditComponent } from './User/edit/edit.component';
 import { ListComponent } from './User/list/list.component';
 
 const routes: Routes = [
+  {path:'', component:ListComponent},
   {path:'list', component:ListComponent},
   {path:'create', component:CreateComponent},
   {path:'edit', component:EditComponent},

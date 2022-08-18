@@ -5,14 +5,7 @@
     </div>
     <div class="card-body">
       <nav class="row navbar">
-        <input
-          class="form-control"
-          type="text"
-          name="fullname"
-          [(ngModel)]="fullname"
-          (ngModelChange)="Search()"
-          placeholder="Enter fullname to search"
-        />
+        <input class="form-control" type="text" name="fullname" [(ngModel)]="fullname" (ngModelChange)="Search()" placeholder="Enter fullname to search" />
       </nav>
       <div class="table-responsive">
         <table class="table table-bordered mt-3">
@@ -28,11 +21,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let u of users | paginate: {
-                itemsPerPage: tableSize,
-                currentPage: page,
-                totalItems: count};
-                let i = index">
+            <tr *ngFor=" let u of users | paginate : { itemsPerPage: tableSize, currentPage: page, totalItems: count }; let i = index">
               <td>#{{ u.id }}</td>
               <td>{{ u.fullname }}</td>
               <td>{{ u.email }}</td>
@@ -43,7 +32,7 @@
                 <a (click)="Edit(u)" class="btn btn-warning"> Update </a>
               </td>
               <td>
-                <a (click)="Delete(u)" class="btn btn-danger"> Delete </a>
+                <a (click)="Delete(u)" type="button" class="btn btn-danger"> Delete </a>
               </td>
             </tr>
           </tbody>
@@ -54,7 +43,8 @@
       </div>
     </div>
     <div>
-      <button (click)="Create()" class="btn btn-info mb-3" style="margin-left: 10px"> Create </button>
+      <button
+        (click)="Create()" class="btn btn-info mb-3" style="margin-left: 10px">Create</button>
     </div>
   </div>
 </div>

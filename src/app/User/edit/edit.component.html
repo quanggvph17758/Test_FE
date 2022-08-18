@@ -16,11 +16,6 @@
           <small *ngIf="exform.get('email')?.invalid && exform.get('email')?.touched" class="text-danger"> email không đúng định dạng </small>
         </div>
         <div class="mt-3">
-          <label>Password</label>
-          <input formControlName="password" [(ngModel)]="user.password" type="password" class="form-control"/>
-          <small *ngIf="exform.get('password')?.invalid && exform.get('password')?.touched" class="text-danger"> password phải lớn hơn 6 kí tự </small>
-        </div>
-        <div class="mt-3">
           <label>Birthday</label>
           <input formControlName="birthday" [(ngModel)]="user.birthday" type="date" class="form-control" />
           <small *ngIf="exform.get('birthday')?.invalid && exform.get('birthday')?.touched" class="text-danger"> birthday trống </small>
@@ -43,6 +38,8 @@
           <small *ngIf="exform.get('address')?.invalid && exform.get('address')?.touched" class="text-danger"> address trống </small>
         </div>
         <button [disabled]="exform.invalid" (click)="Update(user)" class="btn btn-success mt-3">Update</button>
+        <button (click)="Reset()" class="btn btn-danger mt-3 ml-3">Reset</button>
+        <button (click)="List()" class="btn btn-info mt-3 ml-3">Quay Lại</button>
       </form>
     </div>
   </div>
