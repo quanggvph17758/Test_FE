@@ -20,7 +20,7 @@ export class CreateComponent implements OnInit {
   ngOnInit(): void {
     this.exform = new FormGroup({
       'fullname': new FormControl(null, Validators.required),
-      'email': new FormControl(null, [Validators.required, Validators.email]),
+      'email': new FormControl(null, [Validators.required, Validators.pattern("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")]),
       'password': new FormControl(null, [Validators.required, Validators.minLength(6)]),
       'birthday': new FormControl(null, Validators.required),
       'gender': new FormControl(null, Validators.required),
