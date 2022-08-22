@@ -1,5 +1,5 @@
 import { Component, OnInit, Pipe } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { UserModel } from 'src/app/Model/UserModel';
 import { UserServiceService } from '../../Service/user-service.service';
 
