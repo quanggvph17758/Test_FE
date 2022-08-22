@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserModel } from './Model/UserModel';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,8 @@ import { Router } from '@angular/router';
 export class AppComponent {
 
   title = '';
+
+  user:UserModel = new UserModel();
 
   constructor(private router:Router){}
 

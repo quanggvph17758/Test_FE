@@ -6,4 +6,5 @@ export class UserModel {
     gender!:String;
     birthday!:Date;
     address!:String;
+    admin!:String;
 }

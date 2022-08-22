@@ -21,10 +21,11 @@ export class EditComponent implements OnInit {
     this.Edit();
     this.exform = new FormGroup({
       'fullname': new FormControl(null, Validators.required),
-      'email': new FormControl(null, [Validators.required, Validators.email]),
+      'email': new FormControl(null, [Validators.required, Validators.pattern("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")]),
       'birthday': new FormControl(null, Validators.required),
       'gender': new FormControl(null, Validators.required),
       'address': new FormControl(null, Validators.required),
+      'admin': new FormControl(null, Validators.required),
     });
   }
 
