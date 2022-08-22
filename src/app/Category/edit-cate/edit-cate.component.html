@@ -1,0 +1,19 @@
+<div class="cotainer">
+  <div class="card mt-3">
+    <div class="card-header">
+      <h3>Create User</h3>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="exform" method="" action="">
+        <div class="mt-3 form-group">
+          <label>Fullname</label>
+          <input formControlName="name" [(ngModel)]="cate.name"type="text" class="form-control" />
+          <small *ngIf=" exform.get('name')?.invalid && exform.get('name')?.touched" class="text-danger"> name trống </small>
+        </div>
+        <button [disabled]="exform.invalid" (click)="Update(cate)" class="btn btn-success mt-3">Update</button>
+        <button (click)="Reset()" class="btn btn-danger mt-3 ml-3">Reset</button>
+        <button (click)="List()" class="btn btn-info mt-3 ml-3">Quay Lại</button>
+      </form>
+    </div>
+  </div>
+</div>

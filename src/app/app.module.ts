@@ -13,6 +13,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { LoginComponent } from './Login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ListCateComponent } from './Category/list-cate/list-cate.component';
+import { CreateCateComponent } from './Category/create-cate/create-cate.component';
+import { EditCateComponent } from './Category/edit-cate/edit-cate.component';
+import { ListProComponent } from './Product/list-pro/list-pro.component';
+import { CreateProComponent } from './Product/create-pro/create-pro.component';
+import { EditproComponent } from './Product/editpro/editpro.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +27,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CreateComponent,
     EditComponent,
     LoginComponent,
+    ListCateComponent,
+    CreateCateComponent,
+    EditCateComponent,
+    ListProComponent,
+    CreateProComponent,
+    EditproComponent,
   ],
   imports: [
     BrowserModule,
