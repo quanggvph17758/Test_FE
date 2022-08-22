@@ -12,6 +12,7 @@ import { UserServiceService } from 'src/app/Service/user-service.service';
 
 export class CreateComponent implements OnInit {
 
+  user:UserModel = new UserModel();
 
   constructor(private router:Router, private service:UserServiceService) { }
 
@@ -25,10 +26,10 @@ export class CreateComponent implements OnInit {
       'birthday': new FormControl(null, Validators.required),
       'gender': new FormControl(null, Validators.required),
       'address': new FormControl(null, Validators.required),
+      'admin': new FormControl(null, Validators.required),
     });
   }
 
-  user:UserModel = new UserModel();
   save() {
     this.service.CreateUser(this.user)
     .subscribe(data => {

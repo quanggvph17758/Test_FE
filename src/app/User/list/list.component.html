@@ -17,6 +17,7 @@
               <th>Gender</th>
               <th>Birthday</th>
               <th>Address</th>
+              <th>Admin</th>
               <th colspan="2">Action</th>
             </tr>
           </thead>
@@ -28,6 +29,7 @@
               <td>{{ u.gender }}</td>
               <td>{{ u.birthday | date: "dd/MM/yyyy" }}</td>
               <td>{{ u.address }}</td>
+              <td>{{ u.admin }}</td>
               <td>
                 <a (click)="Edit(u)" class="btn btn-warning"> Update </a>
               </td>
