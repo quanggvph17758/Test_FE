@@ -1,1 +1,53 @@
-<p>list-pro works!</p>
+<div class="cotainer">
+  <div class="card mt-3">
+    <div class="card-header">
+      <h3>List Product</h3>
+    </div>
+    <div class="card-body">
+      <nav class="row navbar">
+        <input class="form-control" type="text" name="fullname" [(ngModel)]="name" (ngModelChange)="Search()" placeholder="Enter fullname to search" />
+      </nav>
+      <div class="table-responsive">
+        <table class="table table-bordered mt-3">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Image</th>
+              <th>Create Date</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Category</th>
+              <th colspan="2">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor=" let pro of pros | paginate : { itemsPerPage: tableSize, currentPage: page, totalItems: count }; let i = index">
+              <td>#{{ pro.id }}</td>
+              <td>{{ pro.name }}</td>
+              <td>{{ pro.images }}</td>
+              <td>{{ pro.createDate | date: "dd/MM/yyyy" }}</td>
+              <td>${{ pro.price }}</td>
+              <td>{{ pro.quantity }}</td>
+              <td>{{ pro.categoryId }}</td>
+              <td>
+                <a (click)="Edit(pro)" class="btn btn-warning"> Update </a>
+              </td>
+              <td>
+                <a (click)="Delete(pro)" type="button" class="btn btn-danger"> Delete </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-center mt-3">
+          <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)"></pagination-controls>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button
+        (click)="Create()" class="btn btn-info mb-3" style="margin-left: 10px">Create</button>
+    </div>
+  </div>
+</div>
+
