@@ -2,8 +2,8 @@ export class ProductModel {
   id!: Number;
   name!: String;
   images!: String;
-  createDate!:Date;
+  create_Date!:Date;
   price!: Number;
   quantity!: Number;
-  categoryId!: Number;
+  category_Id!: Number;
 }

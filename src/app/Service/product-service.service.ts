@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ProductModel } from '../Model/ProductModel';
 
 @Injectable({
@@ -11,8 +12,8 @@ export class ProductServiceService {
 
   constructor(private http:HttpClient) { }
 
-  getPro() {
-    return this.http.get<ProductModel[]>(this.url);
+  getPro(): Observable<any> {
+    return this.http.get<ProductModel>(this.url);
   }
 
   getProId(id:number) {
@@ -31,7 +32,7 @@ export class ProductServiceService {
     return this.http.delete<ProductModel>(this.url + "/" + pro.id);
   }
 
-  getProInCateId() {
+  getProByCategoryId() {
     return this.http.get<ProductModel>(this.url);
   }
 }

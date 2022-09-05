@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { CategoryModel } from '../Model/CategoryModel';
 
 @Injectable({
@@ -11,8 +12,8 @@ export class CategoryServiceService {
 
   constructor(private http:HttpClient) { }
 
-  getCate() {
-    return this.http.get<CategoryModel[]>(this.url);
+  getCate(): Observable<any> {
+    return this.http.get<CategoryModel>(this.url);
   }
 
   getCateId(id:number) {
