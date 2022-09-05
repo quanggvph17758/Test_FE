@@ -19,6 +19,8 @@ import { EditCateComponent } from './Category/edit-cate/edit-cate.component';
 import { ListProComponent } from './Product/list-pro/list-pro.component';
 import { CreateProComponent } from './Product/create-pro/create-pro.component';
 import { EditProComponent } from './Product/edit-pro/edit-pro.component';
+import { RegisterComponent } from './register/register.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { EditProComponent } from './Product/edit-pro/edit-pro.component';
     ListProComponent,
     CreateProComponent,
     EditProComponent,
-    EditProComponent,
+    RegisterComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

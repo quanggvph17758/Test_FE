@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { CategoryModel } from 'src/app/Model/CategoryModel';
 import { ProductModel } from 'src/app/Model/ProductModel';
 import { CategoryServiceService } from 'src/app/Service/category-service.service';
-import { ImagesService } from 'src/app/Service/images.service';
 import { ProductServiceService } from 'src/app/Service/product-service.service';
+import { UploadImgService } from 'src/app/Service/upload-img.service';
 
 @Component({
   selector: 'app-edit-pro',
@@ -20,7 +20,7 @@ export class EditProComponent implements OnInit {
   loading: boolean = false;
   file!: File;
 
-  constructor(private proSer:ProductServiceService, private cateSer:CategoryServiceService, private router:Router, private uploadSer: ImagesService) { }
+  constructor(private proSer:ProductServiceService, private cateSer:CategoryServiceService, private router:Router, private uploadSer: UploadImgService) { }
 
   exform!: FormGroup;
 
@@ -54,7 +54,6 @@ export class EditProComponent implements OnInit {
     this.proSer.updatePro(pro)
     .subscribe(data => {
       pro = data;
-      this.onUpload();
       alert("Update Thành Công!");
       this.router.navigate(["list-pro"]);
     });
@@ -63,31 +62,13 @@ export class EditProComponent implements OnInit {
   Reset() {
     this.pro.name = "";
     this.pro.images = "";
-    this.pro.createDate = new Date();
+    this.pro.create_Date = new Date();
     this.pro.price = 0;
     this.pro.quantity = 0;
-    this.pro.categoryId = 0;
+    this.pro.category_Id = 0;
   }
 
   List() {
     this.router.navigate(["list-pro"])
   }
-
-   onChange(event:any) {
-    this.file = event.target.files[0];
-  }
-
-  onUpload() {
-    this.loading = !this.loading;
-    console.log(this.file);
-    this.uploadSer.uploadImage(this.file).subscribe(
-      (event: any) => {
-        if (typeof (event) === 'object') {
-          this.shortLink = event.link;
-          this.loading = false;
-        }
-      }
-  );
-}
-
 }

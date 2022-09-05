@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CategoryModel } from 'src/app/Model/CategoryModel';
 import { ProductModel } from 'src/app/Model/ProductModel';
 import { CategoryServiceService } from 'src/app/Service/category-service.service';
-import { ImagesService } from 'src/app/Service/images.service';
 import { ProductServiceService } from 'src/app/Service/product-service.service';
+import { UploadImgService } from 'src/app/Service/upload-img.service';
 
 @Component({
   selector: 'app-create-pro',
@@ -20,7 +20,7 @@ export class CreateProComponent implements OnInit {
   loading: boolean = false;
   file!: File;
 
-  constructor(private proSer:ProductServiceService, private cateSer:CategoryServiceService, private router:Router, private uploadSer: ImagesService) { }
+  constructor(private proSer:ProductServiceService, private cateSer:CategoryServiceService, private router:Router, private uploadSer: UploadImgService) { }
 
   exform!: FormGroup;
 
@@ -38,31 +38,14 @@ export class CreateProComponent implements OnInit {
     .subscribe(data => {
       this.cates=data;
     });
+
   }
 
   Save() {
     this.proSer.createPro(this.pro)
     .subscribe(data => {
-      this.onUpload();
       alert("Thêm thành công");
       this.router.navigate(["list-pro"])
     })
   }
-
-  onChange(event:any) {
-    this.file = event.target.files[0];
-  }
-
-  onUpload() {
-    this.loading = !this.loading;
-    console.log(this.file);
-    this.uploadSer.uploadImage(this.file).subscribe(
-     (event: any) => {
-      if (typeof (event) === 'object') {
-        this.shortLink = event.link;
-        this.loading = false;
-      }
-    }
-  );
-}
 }
