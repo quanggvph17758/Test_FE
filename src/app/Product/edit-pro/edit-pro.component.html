@@ -24,7 +24,6 @@
           <input formControlName="create_Date" [(ngModel)]="pro.create_Date" type="date" class="form-control" />
           <small *ngIf=" exform.get('create_Date')?.invalid && exform.get('create_Date')?.touched" class="text-danger"> create date trống </small>
         </div>
-
         <div class="mt-3 form-group col-sm-6">
           <label>Price</label>
           <input formControlName="price" [(ngModel)]="pro.price" type="number" class="form-control" />
