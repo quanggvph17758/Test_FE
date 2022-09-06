@@ -5,6 +5,9 @@ import { EditCateComponent } from './Category/edit-cate/edit-cate.component';
 import { ListCateComponent } from './Category/list-cate/list-cate.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './Login/login.component';
+import { CheckoutOderComponent } from './Oder/checkout-oder/checkout-oder.component';
+import { DetailOderComponent } from './Oder/detail-oder/detail-oder.component';
+import { ListOderComponent } from './Oder/list-oder/list-oder.component';
 import { CreateProComponent } from './Product/create-pro/create-pro.component';
 import { EditProComponent } from './Product/edit-pro/edit-pro.component';
 import { ListProComponent } from './Product/list-pro/list-pro.component';
@@ -29,8 +32,9 @@ const routes: Routes = [
   {path:'register', component:RegisterComponent},
   {path:'home', component:HomeComponent},
   {path:'cart', component:ShoppingCartComponent},
-  {path:'order', component:ShoppingCartComponent},
-  {path:'orderDe', component:ShoppingCartComponent},
+  {path:'list-order', component:ListOderComponent},
+  {path:'check-out', component:CheckoutOderComponent},
+  {path:'detail-order', component:DetailOderComponent},
 ];
 
 @NgModule({

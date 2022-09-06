@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="card mt-3">
+    <div class="card-header">ORDER PURCHASING</div>
+    <div class="card-body">
+      <div class="card-title">
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <label>Email</label>
+            <input name="email" [(ngModel)]="order.email" class="form-control" />
+          </div>
+          <div class="form-group col-sm-6">
+            <label>Order Date:</label>
+            <input name="createDate" [(ngModel)]="order.create_date" class="form-control" type="date" />
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="form-group">
+            <label for="">Shipping Address</label>
+            <textarea name="address" [(ngModel)]="order.address" class="form-control"></textarea>
+          </div>
+        </div>
+      </div>
+      <button (click)="checkOut()" class="btn btn-success"> Purchase </button>
+    </div>
+  </div>
+</div>

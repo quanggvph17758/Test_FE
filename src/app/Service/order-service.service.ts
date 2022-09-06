@@ -9,6 +9,7 @@ import { OrderModel } from '../Model/OrderModel';
 export class OrderServiceService {
 
   url = 'http://localhost:8080/test/order';
+  url2 = 'http://localhost:8080/test/order2';
 
   constructor(private http:HttpClient) { }
 
@@ -26,6 +27,10 @@ export class OrderServiceService {
 
   updateOder(order: OrderModel) {
     return this.http.put<OrderModel>(this.url + "/" + order.id , order);
+  }
+
+  updateOder2(order: OrderModel) {
+    return this.http.put<OrderModel>(this.url2 + "/" + order.id , order);
   }
 
   deleteOrder(order: OrderModel) {

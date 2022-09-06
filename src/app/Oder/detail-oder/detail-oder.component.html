@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="card mt-3">
+    <div class="card-header">ORDER INFORMATION</div>
+    <div class="card-body">
+      <div class="card-title" *ngFor="let order of orders">
+        <div class="row">
+          <div class="row">
+            <div class="form-group col-sm-6">
+              <label> Order Number: </label>
+              <input disabled class="form-control" placeholder="{{ order.id }}" readonly  />
+            </div>
+            <div class="form-group col-sm-6">
+              <label> Purcchaser: </label>
+              <input disabled class="form-control" placeholder="{{ order.email }}" readonly />
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-6">
+              <label> Purcchased Date: </label>
+              <input disabled class="form-control" placeholder="{{ order.create_date }}" readonly />
+            </div>
+            <div class="form-group col-sm-6">
+              <label> Status: </label>
+              <input disabled class="form-control" placeholder="{{ order.status }}" readonly />
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="form-group col-sm-12">
+              <label> Shipping Address: </label>
+              <textarea disabled class="form-control" placeholder="{{ order.address }}" readonly></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mt-3">
+    <div class="card-header">ORDER LINES</div>
+    <ul class="card-body">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of items; let i = index">
+            <td> {{i + 1}} </td>
+            <td> {{item.name}} </td>
+            <td> {{item.price}} </td>
+            <td> {{quantity}} </td>
+            <td> {{quantity*item.price}} </td>
+          </tr>
+        </tbody>
+      </table>
+    </ul>
+  </div>
+</div>
