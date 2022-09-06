@@ -64,7 +64,6 @@ export class EditProComponent implements OnInit {
     this.pro.images = "";
     this.pro.create_Date = new Date();
     this.pro.price = 0;
-    this.pro.quantity = 0;
     this.pro.category_Id = 0;
   }
 

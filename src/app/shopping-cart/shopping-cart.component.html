@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row col-sm-12">
+    <div class="card mt-3">
+      <div class="card-header">SHOPPING CART</div>
+      <div class="card-body">
+        <div class="card-subtitle mb-2 text-muted">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">NO.</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Amount</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of items; let i = index">
+                <td>#{{ i + 1 }}</td>
+                <td>{{ item.name }}</td>
+                <td>${{ item.price }}</td>
+                <td> <input type="number" min="1" [(ngModel)]="quantity"> </td>
+                <td>${{ quantity*item.price }} </td>
+                <td>
+                  <button (click)="removeItem(item)" class="btn btn-sm btn-danger text-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-trash-fill"
+                      viewBox="0 0 16 16">
+                      <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                    </svg>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <button (click)="removeAll()" class="card-link btn btn-danger">Clear</button>
+        <button class="card-link btn btn-primary">Checkout</button>
+      </div>
+    </div>
+  </div>
+</div>

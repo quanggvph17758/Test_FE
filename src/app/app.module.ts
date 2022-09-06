@@ -21,6 +21,7 @@ import { CreateProComponent } from './Product/create-pro/create-pro.component';
 import { EditProComponent } from './Product/edit-pro/edit-pro.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { HomeComponent } from './home/home.component';
     EditProComponent,
     RegisterComponent,
     HomeComponent,
+    ShoppingCartComponent,
   ],
   imports: [
     BrowserModule,

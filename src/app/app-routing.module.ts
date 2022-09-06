@@ -9,6 +9,7 @@ import { CreateProComponent } from './Product/create-pro/create-pro.component';
 import { EditProComponent } from './Product/edit-pro/edit-pro.component';
 import { ListProComponent } from './Product/list-pro/list-pro.component';
 import { RegisterComponent } from './register/register.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CreateComponent } from './User/create/create.component';
 import { EditComponent } from './User/edit/edit.component';
 import { ListComponent } from './User/list/list.component';
@@ -27,6 +28,9 @@ const routes: Routes = [
   {path:'edit-pro', component:EditProComponent},
   {path:'register', component:RegisterComponent},
   {path:'home', component:HomeComponent},
+  {path:'cart', component:ShoppingCartComponent},
+  {path:'order', component:ShoppingCartComponent},
+  {path:'orderDe', component:ShoppingCartComponent},
 ];
 
 @NgModule({
