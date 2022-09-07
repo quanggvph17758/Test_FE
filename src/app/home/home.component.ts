@@ -24,6 +24,8 @@ export class HomeComponent implements OnInit {
 
   totalItem: number = 0;
 
+  subTotal!: any;
+
   constructor(private proSer:ProductServiceService, private cateSer:CategoryServiceService, private cartSer:CartServiceService,) { }
 
   ngOnInit(): void {
@@ -37,13 +39,17 @@ export class HomeComponent implements OnInit {
       this.cates=data;
     });
 
-    this.cartSer.getProduts()
+    this.cartSer.getProducts()
     .subscribe(data => {
       this.totalItem = data.length;
     })
+
+    //this.pros = this.cartSer.getProduct();
   }
 
   addToCart(pro: any) {
-    this.cartSer.addToCart(pro);
+    if (!this.cartSer.productInCart(pro)) {
+      this.cartSer.addToCart(pro);
+    }
   }
 }

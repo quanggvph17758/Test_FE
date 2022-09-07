@@ -6,16 +6,16 @@
         <div class="row">
           <div class="form-group col-sm-6">
             <label>Email</label>
-            <input name="email" [(ngModel)]="order.email" class="form-control" />
+            <input name="email" [(ngModel)]="order.email" class="form-control" type="text">
           </div>
           <div class="form-group col-sm-6">
             <label>Order Date:</label>
-            <input name="createDate" [(ngModel)]="order.create_date" class="form-control" type="date" />
+            <div class="form-control" >{{ createDate | date:'dd-MM-yyyy'}}</div>
           </div>
         </div>
         <div class="row mt-3">
           <div class="form-group">
-            <label for="">Shipping Address</label>
+            <label>Shipping Address</label>
             <textarea name="address" [(ngModel)]="order.address" class="form-control"></textarea>
           </div>
         </div>
