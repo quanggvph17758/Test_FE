@@ -14,6 +14,7 @@ export class DetailOderComponent implements OnInit {
 
   orders: OrderModel[] = [];
   orderDetails: OrderDetailModel[] = [];
+  order: OrderModel = new OrderModel();
   items: any = [];
   grandTotal!: number;
   quantity: number = 0;
@@ -31,12 +32,22 @@ export class DetailOderComponent implements OnInit {
       this.orders = data;
     });
 
-    this.cartSer.getProduts()
+    this.cartSer.getProducts()
     .subscribe(data => {
       this.items = data;
       this.quantity++;
       this.grandTotal = this.cartSer.getTotalPrice();
     })
+
+    this.showById();
+  }
+
+  showById() {
+    let id = localStorage.getItem("id");
+    this.orderSer.getOrderById(Number(id))
+    .subscribe(data => {
+      this.order=data;
+    });
   }
 
 }

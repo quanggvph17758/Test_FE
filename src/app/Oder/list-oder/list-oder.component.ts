@@ -23,6 +23,11 @@ export class ListOderComponent implements OnInit {
     })
   }
 
+  showOrder(order: OrderModel) {
+    localStorage.setItem("id", order.id.toFixed());
+    this.router.navigate(["detail-order"]);
+  }
+
   update(order: OrderModel) {
     this.orderSer.updateOder(order)
     .subscribe(data => {

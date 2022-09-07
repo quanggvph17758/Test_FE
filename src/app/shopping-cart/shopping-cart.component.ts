@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductModel } from '../Model/ProductModel';
+import { OrderDetailModel } from '../Model/OrderDetailModel';
 import { CartServiceService } from '../Service/cart-service.service';
+import { OrderdetailServiceService } from '../Service/orderdetail-service.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -12,11 +13,14 @@ export class ShoppingCartComponent implements OnInit {
   items: any = [];
   grandTotal!: number;
   quantity: number = 0;
+  subTotal!: any;
 
-  constructor(private cartSer: CartServiceService) { }
+  oDetail: OrderDetailModel = new OrderDetailModel();
+
+  constructor(private cartSer: CartServiceService, private orderDeSer: OrderdetailServiceService) { }
 
   ngOnInit(): void {
-    this.cartSer.getProduts()
+    this.cartSer.getProducts()
     .subscribe(data => {
       this.items = data;
       this.quantity++;
