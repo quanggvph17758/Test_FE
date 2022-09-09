@@ -25,7 +25,7 @@
             <tr *ngFor=" let pro of pros | paginate : { itemsPerPage: tableSize, currentPage: page, totalItems: count }; let i = index">
               <td>#{{ i + 1 }}</td>
               <td>{{ pro.name }}</td>
-              <td>{{ pro.images }}</td>
+              <td> <img src="assets/images/{{pro.images}}" style="height: 70px;" alt=""></td>
               <td>{{ pro.create_Date | date: "dd/MM/yyyy" }}</td>
               <td>${{ pro.price }}</td>
               <td>{{ pro.quantity }}</td>
