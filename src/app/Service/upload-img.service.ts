@@ -7,8 +7,12 @@ import { Observable } from 'rxjs';
 })
 export class UploadImgService {
 
-  url = 'http://localhost:8080/test/upload';
+  url = 'http://localhost:8080/test/upload/images';
 
   constructor(private http: HttpClient) { }
 
+  uploadFile(uploadFile: any): Observable<any> {
+
+    return this.http.post(this.url, uploadFile);
+  }
 }

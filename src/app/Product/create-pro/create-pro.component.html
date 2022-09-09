@@ -12,7 +12,7 @@
         </div>
         <div class="mt-3 form-group">
           <label>Image</label>
-          <input formControlName="images" [(ngModel)]="pro.images" type="file" class="form-control" />
+          <input formControlName="images" [(ngModel)]="pro.images" type="file" class="form-control" #uploadFile />
           <small *ngIf=" exform.get('images')?.invalid && exform.get('images')?.touched" class="text-danger"> images trống </small>
         </div>
         <div class="mt-3 form-group">
@@ -37,7 +37,7 @@
           </select>
           <small *ngIf="exform.get('categoryId')?.invalid && exform.get('categoryId')?.touched" class="text-danger"> Category trống </small>
         </div>
-        <button type="button" [disabled]="exform.invalid" (click)="Save()" class="btn btn-success mt-3"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+        <button type="button" [disabled]="exform.invalid" (click)="Save(pro, uploadFile)" class="btn btn-success mt-3"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
           <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
         </svg> Create</button>
       </form>

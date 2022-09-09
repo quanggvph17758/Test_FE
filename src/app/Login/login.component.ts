@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     this.lgService.login(this.user)
     .subscribe(data => {
       alert("Đăng Nhập Thành Công!");
-        this.router.navigate(['list']);
+        this.router.navigate(['home']);
     }, error => alert("Đăng Nhập Thất Bại!"));
   }
 

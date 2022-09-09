@@ -16,9 +16,6 @@ export class CreateProComponent implements OnInit {
 
   pro:ProductModel = new ProductModel();
   cates:CategoryModel[]=[];
-  shortLink: string = "";
-  loading: boolean = false;
-  file!: File;
 
   constructor(private proSer:ProductServiceService, private cateSer:CategoryServiceService, private router:Router, private uploadSer: UploadImgService) { }
 
@@ -41,11 +38,18 @@ export class CreateProComponent implements OnInit {
 
   }
 
-  Save() {
-    this.proSer.createPro(this.pro)
+  Save(pro:ProductModel,  uploadFile: any) {
+    this.proSer.createPro(pro)
     .subscribe(data => {
-      alert("Thêm thành công");
-      this.router.navigate(["list-pro"])
+      var formdata = new FormData();
+      formdata.append('file', uploadFile[0]);
+       this.uploadSer.uploadFile(formdata)
+       .subscribe(res => {
+        pro.images = res.name;
+       }, error => {
+        alert("Lỗi upload hình ảnh")
+        console.log("Error", error);
+       })
     })
   }
 }
