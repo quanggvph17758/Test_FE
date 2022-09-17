@@ -1,30 +1,33 @@
-<div class="container">
+<div>
   <div class="row">
-    <article class="col-sm-9">
+    <div class="col-sm-9">
       <div class="row">
-        <div class="card col-sm-3 mt-3 me-3" style="width: 300px;" *ngFor="let pro of pros">
-          <div class="card-header">
-            <h3 class="text-center" >{{ pro.name }}</h3>
-          </div>
-          <div class="card-body">
-            <img src="assets/images/{{pro.images}}" style="height: 250px;" class="card-img-top" alt="..." />
-            <p class="card-title mt-3">Số Lượng: {{ pro.quantity }}</p>
-            <p class="card-title text-danger">Giá: ${{ pro.price }}</p>
-            <a class="btn btn-primary text-center" (click)="addToCart(pro)"  > <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-check-fill" viewBox="0 0 16 16">
-              <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708z"/>
-            </svg> </a>
+        <div class="col-sm-4 mt-3 me-3" style="width: 300px" *ngFor="let pro of pros">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="text-center">{{ pro.name }}</h3>
+            </div>
+            <div class="card-body">
+              <img src="assets/images/{{ pro.images }}" style="height: 250px" class="card-img-top" />
+              <div class="row mt-3">
+                <p class="card-title text-danger col-sm-6"> Giá: ${{ pro.price }} </p>
+                  <a class="btn btn-primary text-center col-sm-6" (click)="addToCart(pro)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"  fill="currentColor" class="bi bi-cart-check-fill" viewBox="0 0 16 16" >
+                      <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+                    </svg> </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </article>
-    <aside class="col-sm-3">
+    </div>
+    <div class="col-sm-3">
       <div class="card mt-3">
         <div class="card-body">
-          <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" fill="currentColor"
-            class="bi bi-cart-check-fill" viewBox="0 0 16 16">
+          <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" fill="currentColor" class="bi bi-cart-check-fill" viewBox="0 0 16 16" >
             <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708z" />
           </svg>
-          <a [routerLink]="['/cart']"> {{ totalItem }} item </a>
+          <a [routerLink]="['/cart']"> {{ count }} item x {{ amount }}</a>
         </div>
       </div>
       <div class="card mt-3">
@@ -35,6 +38,6 @@
           </a>
         </ul>
       </div>
-    </aside>
+    </div>
   </div>
 </div>

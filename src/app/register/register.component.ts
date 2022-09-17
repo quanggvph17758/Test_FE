@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RoleModel } from '../Model/RoleModel';
 import { UserModel } from '../Model/UserModel';
 import { UserServiceService } from '../Service/user-service.service';
 
@@ -12,6 +13,7 @@ import { UserServiceService } from '../Service/user-service.service';
 export class RegisterComponent implements OnInit {
 
   user:UserModel = new UserModel();
+  role:RoleModel = new RoleModel();
 
   constructor(private router:Router, private service:UserServiceService) { }
 
@@ -26,9 +28,13 @@ export class RegisterComponent implements OnInit {
       'gender': new FormControl(null, Validators.required),
       'address': new FormControl(null, Validators.required),
     });
+
+    this.user.role_id = this.role;
+
   }
 
   save() {
+    this.user.role_id.id = "KH";
     this.service.registerUser(this.user)
     .subscribe(data => {
       alert("Đăng ký thành công!")

@@ -13,7 +13,7 @@ export class LoginServiceService {
   url = 'http://localhost:8080/test/login';
 
   login(user:UserModel):Observable<object> {
-    console.log(user);
+
     return this.http.post(this.url, user);
   }
 }

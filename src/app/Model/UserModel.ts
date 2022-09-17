@@ -1,3 +1,5 @@
+import { RoleModel } from "./RoleModel";
+
 export class UserModel {
     id!:Number;
     fullname!:String;
@@ -6,5 +8,5 @@ export class UserModel {
     gender!:String;
     birthday!:Date;
     address!:String;
-    admin!:String;
+    role_id!: RoleModel;
 }

@@ -2,7 +2,9 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RoleModel } from 'src/app/Model/RoleModel';
 import { UserModel } from 'src/app/Model/UserModel';
+import { RoleServiceService } from 'src/app/Service/role-service.service';
 import { UserServiceService } from 'src/app/Service/user-service.service';
 
 @Component({
@@ -13,7 +15,11 @@ import { UserServiceService } from 'src/app/Service/user-service.service';
 
 export class EditComponent implements OnInit {
 
-  constructor(private router:Router, private service:UserServiceService) { }
+  roles: RoleModel[]=[];
+  role: RoleModel = new RoleModel();
+  user:UserModel = new UserModel();
+
+  constructor(private router:Router, private service:UserServiceService, private roleSer: RoleServiceService) { }
 
   exform!: FormGroup;
 
@@ -25,11 +31,16 @@ export class EditComponent implements OnInit {
       'birthday': new FormControl(null, Validators.required),
       'gender': new FormControl(null, Validators.required),
       'address': new FormControl(null, Validators.required),
-      'admin': new FormControl(null, Validators.required),
+      'role_id': new FormControl(null, Validators.required),
     });
-  }
 
-  user:UserModel = new UserModel();
+    this.roleSer.getRole()
+    .subscribe(data => {
+      this.roles = data;
+    })
+
+    this.user.role_id = this.role;
+  }
 
   Edit() {
     let id = localStorage.getItem("id");

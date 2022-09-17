@@ -1,4 +1,4 @@
-<div class="container">
+<div>
   <div class="card mt-3">
     <div class="card-header">ORDER INFORMATION</div>
     <div class="card-body">
@@ -11,7 +11,7 @@
             </div>
             <div class="form-group col-sm-6">
               <label> Purcchaser: </label>
-              <input disabled class="form-control" [(ngModel)]="order.email" readonly />
+              <input disabled class="form-control" [(ngModel)]="order.email_user" readonly />
             </div>
           </div>
           <div class="row">
@@ -41,20 +41,18 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th>No.</th>
-            <th>Order ID</th>
-            <th>Product ID</th>
+            <th>Order</th>
+            <th>Product Name</th>
             <th>Price</th>
             <th>Quantity</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let oDetail of orderDetails; let i = index">
-            <td> {{i + 1}} </td>
-            <td> {{oDetail.order_id}} </td>
-            <td> {{oDetail.product_id}} </td>
-            <td> {{oDetail.price}} </td>
-            <td> {{oDetail.quantity}} </td>
+          <tr>
+            <td> {{orderDetail.order_id.id}} </td>
+            <td> {{orderDetail.product_id.name}} </td>
+            <td> {{orderDetail.price}} </td>
+            <td> {{orderDetail.quantity}} </td>
           </tr>
         </tbody>
       </table>

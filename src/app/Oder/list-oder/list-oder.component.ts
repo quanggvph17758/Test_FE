@@ -28,20 +28,24 @@ export class ListOderComponent implements OnInit {
     this.router.navigate(["detail-order"]);
   }
 
-  update(order: OrderModel) {
-    this.orderSer.updateOder(order)
+  XacNhan(order: OrderModel) {
+    order.status = "Đã Xác Nhận";
+    this.orderSer.update(order)
     .subscribe(data => {
       order = data;
       alert("Xác nhận đơn hàng thành công");
-    })
+      this.ngOnInit();
+    });
   }
 
-  update2(order: OrderModel) {
-    this.orderSer.updateOder2(order)
+  HuyDonHang(order: OrderModel) {
+    order.status = "Hủy Đơn Hàng";
+    this.orderSer.update(order)
     .subscribe(data => {
       order = data;
       alert("Hủy đơn hàng thành công");
-    })
+      this.ngOnInit();
+    });
   }
 
   page: number = 1;

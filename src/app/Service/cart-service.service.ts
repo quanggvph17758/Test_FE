@@ -8,64 +8,45 @@ import { ProductModel } from '../Model/ProductModel';
 })
 export class CartServiceService {
 
-  cartItemList: any = []
-  productList = new BehaviorSubject<any>([]);
-
-  products: ProductModel[] = [];
-  quantity: number = 0;
-
   constructor(private http:HttpClient) { }
 
-  getProducts() {
-    return this.productList.asObservable();
+  items: any = [];
+
+  addToCart(addedItem: any) {
+    this.items.push(addedItem);
+
+    this.saveCart();
   }
 
-  setProducts(product: any) {
-    this.cartItemList.push(product);
-    this.productList.next(product);
+  getItems() {
+    return this.items;
   }
 
-  addToCart(product: any) {
-    this.cartItemList.push(product);
-    this.productList.next(this.cartItemList);
-    this.getTotalPrice();
-    this.saveToLocalStorage();
+  loadCart(): void {
+    var json = localStorage.getItem("cart_items");
+    this.items = json ? JSON.parse(json) : [];
   }
 
-  getTotalPrice(): number {
-    let grandTotal = 0;
-    this.cartItemList.map((a: any) => {
-      grandTotal += a.total;
-    })
-    return grandTotal;
+  saveCart(): void {
+    localStorage.setItem('cart_items', JSON.stringify(this.items));
   }
 
-  removeCartItem(product: any) {
-    this.cartItemList.map((a: any, index: any) => {
-      if(product.id === a.id) {
-        this.cartItemList.splice(index, 1);
-        this.saveToLocalStorage();
-      }
-    })
-    this.productList.next(this.cartItemList);
+  clearCart(items: any) {
+    this.items = [];
+
+    localStorage.removeItem("cart_items")
   }
 
-  removeAllCart() {
-    this.cartItemList = [];
-    this.productList.next(this.cartItemList);
-    localStorage.clear();
+  removeItem(item: any) {
+    const index = this.items.findIndex((o: any) => o.id === item.id);
+
+    if (index > -1) {
+      this.items.splice(index, 1);
+      this.saveCart();
+    }
   }
 
-  saveToLocalStorage() {
-    localStorage.setItem('cart_items', JSON.stringify(this.products));
+  itemInCart(item: any): boolean {
+    return this.items.findIndex((o: any) => o.id === item.id) > -1;
   }
-
-  loadToLocalStorage() {
-    this.products = JSON.parse(localStorage.getItem('cart_items') as any) || [];
-  }
-
-  productInCart(pro: ProductModel) {
-    return this.products.findIndex((x: any) => x.id === pro.id) > -1;
-  }
-
 }
