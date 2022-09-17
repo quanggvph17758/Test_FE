@@ -1,0 +1,79 @@
+<div>
+    <div class="card mt-3">
+      <div class="card-header">SHOPPING CART</div>
+      <div class="card-body">
+        <div class="card-subtitle mb-2 text-muted">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">NO.</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Amount</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of items; let i = index">
+                <td> #{{ i + 1}} </td>
+                <td> {{ item.name }} </td>
+                <td> ${{ item.price | number: '1.2-2' }}  </td>
+                <td> <input [(ngModel)]="item.quantity" min="1" type="number" class="form-control" style="width: 70px;"> </td>
+                <td> ${{ item.price*item.quantity | number: '1.2-2' }} </td>
+                <td>
+                  <button class="btn btn-sm btn-danger text-center" (click)="removeFromCart(item)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                      <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                    </svg>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <button (click)="clearCart(items)" class="card-link btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square-fill" viewBox="0 0 16 16">
+          <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+        </svg> Clear</button>
+       <!-- <button [routerLink]="['/check-out']" class="card-link btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+        </svg> Checkout</button> -->
+      </div>
+    </div>
+</div>
+
+<div>
+  <div class="card mt-3">
+    <div class="card-header">ORDER PURCHASING</div>
+    <div class="card-body">
+      <div class="card-title">
+        <form [formGroup]="exform" action="">
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <label>Email</label>
+            <input formControlName="email" [(ngModel)]="order.email_user" class="form-control" type="text">
+            <small *ngIf="exform.get('email')?.invalid && exform.get('email')?.touched" class="text-danger"> email không đúng định dạng </small>
+          </div>
+          <div class="form-group col-sm-6">
+            <label>Order Date:</label>
+            <div class="form-control" >{{ createDate | date:'dd-MM-yyyy'}}</div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="form-group col-sm-6">
+            <label>Phone Number</label>
+            <input formControlName="phone" [(ngModel)]="order.phone" class="form-control">
+            <small *ngIf="exform.get('phone')?.invalid && exform.get('phone')?.touched" class="text-danger"> Số điện thoại không đúng định dạng </small>
+          </div>
+          <div class="form-group col-sm-6">
+            <label>Shipping Address</label>
+            <textarea formControlName="address" [(ngModel)]="order.address" class="form-control"></textarea>
+            <small *ngIf="exform.get('address')?.invalid && exform.get('address')?.touched" class="text-danger"> Địa chỉ trống </small>
+          </div>
+        </div>
+      </form>
+      </div>
+      <button [disabled]="exform.invalid" (click)="checkOut()" class="btn btn-success mt-3"> Order Purchase </button>
+    </div>
+  </div>
+</div>

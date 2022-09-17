@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CategoryModel } from 'src/app/Model/CategoryModel';
@@ -16,6 +16,7 @@ export class CreateProComponent implements OnInit {
 
   pro:ProductModel = new ProductModel();
   cates:CategoryModel[]=[];
+  cate: CategoryModel = new CategoryModel();
 
   constructor(private proSer:ProductServiceService, private cateSer:CategoryServiceService, private router:Router, private uploadSer: UploadImgService) { }
 
@@ -27,7 +28,6 @@ export class CreateProComponent implements OnInit {
       'images': new FormControl(null, Validators.required),
       'create_Date': new FormControl(null, Validators.required),
       'price': new FormControl(null, Validators.required),
-      'quantity': new FormControl(null, Validators.required),
       'categoryId': new FormControl(null, Validators.required),
     });
 
@@ -36,20 +36,30 @@ export class CreateProComponent implements OnInit {
       this.cates=data;
     });
 
+    this.pro.category_id = this.cate;
+
   }
 
-  Save(pro:ProductModel,  uploadFile: any) {
+  uploadFile: any;
+
+  Save(pro:ProductModel) {
     this.proSer.createPro(pro)
     .subscribe(data => {
       var formdata = new FormData();
-      formdata.append('file', uploadFile[0]);
+      formdata.append('files', this.uploadFile || [0]);
        this.uploadSer.uploadFile(formdata)
        .subscribe(res => {
         pro.images = res.name;
+        alert("Thêm Sản Phẩm thành công")
+        this.router.navigate(["list-pro"]);
        }, error => {
         alert("Lỗi upload hình ảnh")
         console.log("Error", error);
        })
     })
+  }
+
+  onChange() {
+    this.uploadFile;
   }
 }

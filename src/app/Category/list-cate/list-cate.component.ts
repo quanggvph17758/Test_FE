@@ -37,6 +37,7 @@ export class ListCateComponent implements OnInit {
     .subscribe(data => {
       this.cates=this.cates.filter(cate => cate! == cate);
       alert("Xóa thành công!");
+      this.ngOnInit();
     })
   }
 

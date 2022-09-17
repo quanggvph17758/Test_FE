@@ -16,6 +16,7 @@ export class EditProComponent implements OnInit {
 
   pro:ProductModel = new ProductModel();
   cates:CategoryModel[]=[];
+  cate: CategoryModel = new CategoryModel();
   shortLink: string = "";
   loading: boolean = false;
   file!: File;
@@ -29,7 +30,6 @@ export class EditProComponent implements OnInit {
       'name': new FormControl(null, Validators.required),
       'create_Date': new FormControl(null, Validators.required),
       'price': new FormControl(null, Validators.required),
-      'quantity': new FormControl(null, Validators.required),
       'categoryId': new FormControl(null, Validators.required),
     });
 
@@ -37,6 +37,8 @@ export class EditProComponent implements OnInit {
     .subscribe(data => {
       this.cates=data;
     });
+
+    this.pro.category_id = this.cate
 
     this.Edit();
   }
@@ -64,7 +66,6 @@ export class EditProComponent implements OnInit {
     this.pro.images = "";
     this.pro.create_Date = new Date();
     this.pro.price = 0;
-    this.pro.category_Id = 0;
   }
 
   List() {

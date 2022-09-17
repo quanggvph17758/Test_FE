@@ -36,7 +36,7 @@ export class ListComponent implements OnInit {
     .subscribe(data => {
       this.users=this.users.filter(u => u! == user);
       alert("Xóa thành công!");
-      //this.ngOnInit();
+      this.ngOnInit();
     })
   }
 

@@ -21,11 +21,9 @@ import { CreateProComponent } from './Product/create-pro/create-pro.component';
 import { EditProComponent } from './Product/edit-pro/edit-pro.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
-import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ShoppingCartComponent } from './Oder/shopping-cart/shopping-cart.component';
 import { ListOderComponent } from './Oder/list-oder/list-oder.component';
-import { CheckoutOderComponent } from './Oder/checkout-oder/checkout-oder.component';
 import { DetailOderComponent } from './Oder/detail-oder/detail-oder.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +41,6 @@ import { DetailOderComponent } from './Oder/detail-oder/detail-oder.component';
     HomeComponent,
     ShoppingCartComponent,
     ListOderComponent,
-    CheckoutOderComponent,
     DetailOderComponent,
   ],
   imports: [

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CategoryModel } from 'src/app/Model/CategoryModel';
 import { ProductModel } from 'src/app/Model/ProductModel';
 import { CategoryServiceService } from 'src/app/Service/category-service.service';
 import { ProductServiceService } from 'src/app/Service/product-service.service';
@@ -13,7 +14,6 @@ import { ProductServiceService } from 'src/app/Service/product-service.service';
 export class ListProComponent implements OnInit {
 
   pros:ProductModel[] = [];
-  //cates:CategoryModel[]=[];
   name:any;
 
   constructor(private proSer:ProductServiceService, private cateSer:CategoryServiceService, private router:Router) { }
@@ -23,11 +23,6 @@ export class ListProComponent implements OnInit {
     .subscribe(data => {
       this.pros=data;
     });
-
-    // this.cateSer.getCate()
-    // .subscribe(data => {
-    //   this.cates=data;
-    // });
   }
 
   Create() {
@@ -45,6 +40,7 @@ export class ListProComponent implements OnInit {
     .subscribe(data => {
       this.pros=this.pros.filter(p => p! == pro);
       alert("Xóa thành công!");
+      this.ngOnInit();
     })
   }
 

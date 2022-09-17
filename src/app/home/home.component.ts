@@ -1,6 +1,4 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { CategoryModel } from '../Model/CategoryModel';
 import { ProductModel } from '../Model/ProductModel';
 import { CartServiceService } from '../Service/cart-service.service';
@@ -17,16 +15,10 @@ export class HomeComponent implements OnInit {
   pros:ProductModel[] = [];
   cates:CategoryModel[] = [];
 
-  productList: any;
+  items: any = [];
+  subTotalItems: any;
 
-  items!: [];
-  quantity: number = 0;
-
-  totalItem: number = 0;
-
-  subTotal!: any;
-
-  constructor(private proSer:ProductServiceService, private cateSer:CategoryServiceService, private cartSer:CartServiceService,) { }
+  constructor(private proSer:ProductServiceService, private cateSer:CategoryServiceService, private cartService: CartServiceService) { }
 
   ngOnInit(): void {
     this.proSer.getPro()
@@ -39,17 +31,29 @@ export class HomeComponent implements OnInit {
       this.cates=data;
     });
 
-    this.cartSer.getProducts()
-    .subscribe(data => {
-      this.totalItem = data.length;
-    })
-
-    //this.pros = this.cartSer.getProduct();
+    this.count();
+    this.amount();
   }
 
+
+  //----- add item to cart
   addToCart(pro: any) {
-    if (!this.cartSer.productInCart(pro)) {
-      this.cartSer.addToCart(pro);
+    if (!this.cartService.itemInCart(pro)) {
+      pro.quantity = 1;
+      this.cartService.addToCart(pro); //add items in cart
+      this.items = [this.cartService.getItems()];
     }
+  }
+
+  get count() {
+    return this.items
+      .map((item: any) => item.quantity )
+      .reduce((total: any, quantity: any) => total += quantity, 0);
+  }
+
+  get amount() {
+    return this.items
+      .map((item: any) => item.quantity * item.price)
+      .reduce((total: any, quantity: any) => total += quantity, 0);
   }
 }

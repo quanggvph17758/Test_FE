@@ -1,4 +1,4 @@
-<div class="cotainer">
+<div>
   <div class="card mt-3">
     <div class="card-header">
       <h3>Edit Product</h3>
@@ -30,18 +30,13 @@
           <small *ngIf=" exform.get('price')?.invalid && exform.get('price')?.touched" class="text-danger"> price trống </small>
         </div>
         <div class="mt-3 form-group col-sm-6">
-          <label>Quatity</label>
-          <input formControlName="quantity" [(ngModel)]="pro.quantity" type="number" class="form-control" />
-          <small *ngIf=" exform.get('quantity')?.invalid && exform.get('quantity')?.touched" class="text-danger"> quatity trống </small>
-        </div>
-        <div class="mt-3 form-group col-sm-6">
           <label>Image</label>
           <input formControlName="images" [(ngModel)]="pro.images" type="file" class="form-control" />
           <small *ngIf=" exform.get('images')?.invalid && exform.get('images')?.touched" class="text-danger"> images trống </small>
         </div>
         <div class="mt-3 col-sm-6">
           <label> Category </label>
-          <select formControlName="categoryId" [(ngModel)]="pro.category_Id" class="form-control">
+          <select formControlName="categoryId" [(ngModel)]="pro.category_id.id" class="form-control">
             <option *ngFor="let cate of cates" [value]="cate.id"> {{cate.name}} </option>
           </select>
           <small *ngIf="exform.get('categoryId')?.invalid && exform.get('categoryId')?.touched" class="text-danger"> Category trống </small>
