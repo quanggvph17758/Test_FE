@@ -9,6 +9,7 @@ import { ProductModel } from '../Model/ProductModel';
 export class ProductServiceService {
 
   url = 'http://localhost:8080/test/product';
+  url2= 'http://localhost:8080/test/home';
 
   constructor(private http:HttpClient) { }
 
@@ -30,9 +31,5 @@ export class ProductServiceService {
 
   deletePro(pro:ProductModel) {
     return this.http.delete<ProductModel>(this.url + "/" + pro.id);
-  }
-
-  getProByCategoryId() {
-    return this.http.get<ProductModel>(this.url);
   }
 }

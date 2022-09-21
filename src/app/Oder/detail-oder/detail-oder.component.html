@@ -1,5 +1,5 @@
 <div>
-  <div class="card mt-3">
+ <!-- <div class="card mt-3">
     <div class="card-header">ORDER INFORMATION</div>
     <div class="card-body">
       <div class="card-title">
@@ -33,7 +33,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div class="card mt-3">
     <div class="card-header">ORDER LINES</div>
@@ -48,11 +48,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td> {{orderDetail.order_id.id}} </td>
-            <td> {{orderDetail.product_id.name}} </td>
-            <td> {{orderDetail.price}} </td>
-            <td> {{orderDetail.quantity}} </td>
+          <tr *ngFor="let oDetail of orderDetails">
+            <td> {{oDetail.order_id.id}} </td>
+            <td> {{oDetail.product_id.name}} </td>
+            <td> {{oDetail.price}} </td>
+            <td> {{oDetail.quantity}} </td>
           </tr>
         </tbody>
       </table>

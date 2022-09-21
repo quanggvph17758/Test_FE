@@ -17,9 +17,8 @@ export class EditProComponent implements OnInit {
   pro:ProductModel = new ProductModel();
   cates:CategoryModel[]=[];
   cate: CategoryModel = new CategoryModel();
-  shortLink: string = "";
-  loading: boolean = false;
-  file!: File;
+  updateDate = new Date();
+  createDate!: Date;
 
   constructor(private proSer:ProductServiceService, private cateSer:CategoryServiceService, private router:Router, private uploadSer: UploadImgService) { }
 
@@ -28,7 +27,6 @@ export class EditProComponent implements OnInit {
   ngOnInit(): void {
     this.exform = new FormGroup({
       'name': new FormControl(null, Validators.required),
-      'create_Date': new FormControl(null, Validators.required),
       'price': new FormControl(null, Validators.required),
       'categoryId': new FormControl(null, Validators.required),
     });
@@ -38,8 +36,6 @@ export class EditProComponent implements OnInit {
       this.cates=data;
     });
 
-    this.pro.category_id = this.cate
-
     this.Edit();
   }
 
@@ -48,11 +44,13 @@ export class EditProComponent implements OnInit {
     this.proSer.getProId(Number(id))
     .subscribe(data => {
       this.pro=data;
+      this.createDate = data.create_Date;
     });
   }
 
 
   Update(pro:ProductModel) {
+    pro.update_Date = this.updateDate;
     this.proSer.updatePro(pro)
     .subscribe(data => {
       pro = data;

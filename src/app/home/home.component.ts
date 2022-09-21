@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit {
   cates:CategoryModel[] = [];
 
   items: any = [];
-  subTotalItems: any;
 
   constructor(private proSer:ProductServiceService, private cateSer:CategoryServiceService, private cartService: CartServiceService) { }
 
@@ -32,15 +31,12 @@ export class HomeComponent implements OnInit {
     });
 
     this.count();
-    this.amount();
   }
 
-
-  //----- add item to cart
   addToCart(pro: any) {
     if (!this.cartService.itemInCart(pro)) {
       pro.quantity = 1;
-      this.cartService.addToCart(pro); //add items in cart
+      this.cartService.addToCart(pro);
       this.items = [this.cartService.getItems()];
     }
   }
@@ -48,12 +44,6 @@ export class HomeComponent implements OnInit {
   get count() {
     return this.items
       .map((item: any) => item.quantity )
-      .reduce((total: any, quantity: any) => total += quantity, 0);
-  }
-
-  get amount() {
-    return this.items
-      .map((item: any) => item.quantity * item.price)
       .reduce((total: any, quantity: any) => total += quantity, 0);
   }
 }

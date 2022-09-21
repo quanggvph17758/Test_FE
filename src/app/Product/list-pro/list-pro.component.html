@@ -15,6 +15,7 @@
               <th>Name</th>
               <th>Image</th>
               <th>Create Date</th>
+              <th>Update Date</th>
               <th>Price</th>
               <th>Category</th>
               <th colspan="2">Action</th>
@@ -26,6 +27,7 @@
               <td>{{ pro.name }}</td>
               <td> <img src="assets/images/{{pro.images}}" style="height: 70px;" alt=""></td>
               <td>{{ pro.create_Date | date: "dd/MM/yyyy" }}</td>
+              <td>{{ pro.update_Date | date: "dd/MM/yyyy" }}</td>
               <td>${{ pro.price }}</td>
               <td>{{ pro.category_id.name }}</td>
               <td>
