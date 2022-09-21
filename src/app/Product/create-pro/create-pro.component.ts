@@ -17,6 +17,7 @@ export class CreateProComponent implements OnInit {
   pro:ProductModel = new ProductModel();
   cates:CategoryModel[]=[];
   cate: CategoryModel = new CategoryModel();
+  createDate = new Date();
 
   constructor(private proSer:ProductServiceService, private cateSer:CategoryServiceService, private router:Router, private uploadSer: UploadImgService) { }
 
@@ -26,7 +27,6 @@ export class CreateProComponent implements OnInit {
     this.exform = new FormGroup({
       'name': new FormControl(null, Validators.required),
       'images': new FormControl(null, Validators.required),
-      'create_Date': new FormControl(null, Validators.required),
       'price': new FormControl(null, Validators.required),
       'categoryId': new FormControl(null, Validators.required),
     });
@@ -43,6 +43,7 @@ export class CreateProComponent implements OnInit {
   uploadFile: any;
 
   Save(pro:ProductModel) {
+    pro.create_Date = this.createDate
     this.proSer.createPro(pro)
     .subscribe(data => {
       var formdata = new FormData();

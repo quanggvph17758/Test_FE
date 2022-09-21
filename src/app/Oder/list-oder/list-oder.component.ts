@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { OrderDetailModel } from 'src/app/Model/OrderDetailModel';
 import { OrderModel } from 'src/app/Model/OrderModel';
 import { OrderServiceService } from 'src/app/Service/order-service.service';
 
@@ -13,6 +14,7 @@ export class ListOderComponent implements OnInit {
 
   orders: OrderModel[] = [];
   order: OrderModel = new OrderModel();
+  email: any;
 
   constructor(private orderSer: OrderServiceService, private router: Router) { }
 
@@ -23,7 +25,7 @@ export class ListOderComponent implements OnInit {
     })
   }
 
-  showOrder(order: OrderModel) {
+  showOrderDetail(order: OrderModel) {
     localStorage.setItem("id", order.id.toFixed());
     this.router.navigate(["detail-order"]);
   }
@@ -63,6 +65,16 @@ export class ListOderComponent implements OnInit {
     this.tableSize = event.target.value;
     this.page = 1;
     this.fetchPosts();
+  }
+
+  Search(){
+    if (this.email == "") {
+      this.ngOnInit();
+    } else {
+      this.orders = this.orders.filter(data => {
+        return data.email_user.toLocaleLowerCase().match(this.email.toLocaleLowerCase());
+      });
+    }
   }
 
 }

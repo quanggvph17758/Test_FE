@@ -36,6 +36,8 @@ export class ShoppingCartComponent implements OnInit {
       'address': new FormControl(null, Validators.required),
     });
 
+    console.log(this.items);
+
     this.orderDe.order_id = this.order;
     this.orderDe.product_id = this.pro;
   }
@@ -56,8 +58,15 @@ export class ShoppingCartComponent implements OnInit {
     this.order.status = "Chờ Xác Nhận";
     this.orderSer.createOrder(this.order)
     .subscribe(data => {
-      alert("Đặt hàng thành công");
-      this.router.navigate(["home"]);
+      this.orderDe.order_id.id = data.id;
+      this.orderDe.product_id.id = this.items.id;
+      this.orderDe.price = this.items.price;
+      this.orderDe.quantity = this.items.quantity;
+      this.orderDeSer.createOrderDetail(this.orderDe)
+      .subscribe(data2 => {
+        alert("Đặt hàng thành công");
+        this.router.navigate(["home"]);
+      });
     });
   }
 }
