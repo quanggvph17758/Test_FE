@@ -32,4 +32,8 @@ export class ProductServiceService {
   deletePro(pro:ProductModel) {
     return this.http.delete<ProductModel>(this.url + "/" + pro.id);
   }
+
+  getProductByCategoryId() {
+    return this.http.get<ProductModel>(this.url2);
+  }
 }

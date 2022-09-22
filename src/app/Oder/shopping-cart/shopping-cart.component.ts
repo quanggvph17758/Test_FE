@@ -24,7 +24,10 @@ export class ShoppingCartComponent implements OnInit {
 
   exform!: FormGroup;
 
-  constructor(private cartService: CartServiceService, private orderSer: OrderServiceService, private orderDeSer: OrderdetailServiceService, private router: Router) { }
+  constructor(private cartService: CartServiceService,
+              private orderSer: OrderServiceService,
+              private orderDeSer: OrderdetailServiceService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.cartService.loadCart();
@@ -63,7 +66,7 @@ export class ShoppingCartComponent implements OnInit {
       this.orderDe.price = this.items.price;
       this.orderDe.quantity = this.items.quantity;
       this.orderDeSer.createOrderDetail(this.orderDe)
-      .subscribe(data2 => {
+      .subscribe(data => {
         alert("Đặt hàng thành công");
         this.router.navigate(["home"]);
       });

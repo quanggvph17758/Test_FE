@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderDetailModel } from 'src/app/Model/OrderDetailModel';
-import { OrderModel } from 'src/app/Model/OrderModel';
-import { ProductModel } from 'src/app/Model/ProductModel';
 import { CartServiceService } from 'src/app/Service/cart-service.service';
 import { OrderServiceService } from 'src/app/Service/order-service.service';
 import { OrderdetailServiceService } from 'src/app/Service/orderdetail-service.service';
@@ -25,16 +23,5 @@ export class DetailOderComponent implements OnInit {
     .subscribe(data => {
       this.orderDetails = data;
     });
-
-    //this.showById();
   }
-
-  // showById() {
-  //   let id = localStorage.getItem("id");
-  //   this.orderSer.getOrderById(Number(id))
-  //   .subscribe(data => {
-  //     this.order = data;
-  //   });
-  // }
-
 }

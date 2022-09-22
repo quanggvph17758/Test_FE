@@ -6,18 +6,20 @@
           <table class="table table-bordered">
             <thead>
               <tr>
-                <th scope="col">NO.</th>
-                <th scope="col">Name</th>
-                <th scope="col">Price</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Amount</th>
-                <th></th>
+                <th>NO.</th>
+                <th>Name</th>
+                <th>Images</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Amount</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let item of items; let i = index">
                 <td> #{{ i + 1}} </td>
                 <td> {{ item.name }} </td>
+                <td> <img src="assets/images/{{item.images}}" style="height: 60px;" alt=""> </td>
                 <td> ${{ item.price | number: '1.2-2' }}  </td>
                 <td> <input [(ngModel)]="item.quantity" min="1" type="number" class="form-control" style="width: 70px;"> </td>
                 <td> ${{ item.price*item.quantity | number: '1.2-2' }} </td>

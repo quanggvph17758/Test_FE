@@ -14,7 +14,6 @@ export class HomeComponent implements OnInit {
 
   pros:ProductModel[] = [];
   cates:CategoryModel[] = [];
-
   items: any = [];
 
   constructor(private proSer:ProductServiceService, private cateSer:CategoryServiceService, private cartService: CartServiceService) { }
@@ -30,7 +29,6 @@ export class HomeComponent implements OnInit {
       this.cates=data;
     });
 
-    this.count();
   }
 
   addToCart(pro: any) {
