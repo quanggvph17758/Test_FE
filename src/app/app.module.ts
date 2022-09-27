@@ -24,6 +24,7 @@ import { HomeComponent } from './home/home.component';
 import { ShoppingCartComponent } from './Oder/shopping-cart/shopping-cart.component';
 import { ListOderComponent } from './Oder/list-oder/list-oder.component';
 import { DetailOderComponent } from './Oder/detail-oder/detail-oder.component';
+import { NgToastModule } from 'ng-angular-popup';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +51,8 @@ import { DetailOderComponent } from './Oder/detail-oder/detail-oder.component';
     HttpClientModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgToastModule,
   ],
   providers: [UserServiceService],
   bootstrap: [AppComponent]

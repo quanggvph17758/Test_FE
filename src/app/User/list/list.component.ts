@@ -18,11 +18,7 @@ export class ListComponent implements OnInit {
     this.userSer.getUser()
     .subscribe(data => {
       this.users=data;
-    })
-  }
-
-  Create() {
-    this.router.navigate(["create"]);
+    });
   }
 
   Edit(user:UserModel) {

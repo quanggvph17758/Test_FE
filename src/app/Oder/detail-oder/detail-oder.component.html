@@ -1,39 +1,43 @@
 <div>
- <!-- <div class="card mt-3">
+<div class="card mt-3">
     <div class="card-header">ORDER INFORMATION</div>
     <div class="card-body">
       <div class="card-title">
         <div class="row">
-          <div class="row">
+          <div class="row mt-3">
             <div class="form-group col-sm-6">
               <label> Order Number: </label>
-              <input disabled class="form-control" [(ngModel)]="order.id" readonly  />
+              <div class="form-control"> {{order.id}} </div>
             </div>
             <div class="form-group col-sm-6">
               <label> Purcchaser: </label>
-              <input disabled class="form-control" [(ngModel)]="order.email_user" readonly />
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-sm-6">
-              <label> Purcchased Date: </label>
-              <input disabled class="form-control" [(ngModel)]="order.create_date" readonly />
-            </div>
-            <div class="form-group col-sm-6">
-              <label> Status: </label>
-              <input disabled class="form-control" [(ngModel)]="order.status" readonly />
+              <div class="form-control" > {{order.email_user}} </div>
             </div>
           </div>
           <div class="row mt-3">
-            <div class="form-group col-sm-12">
+            <div class="form-group col-sm-6">
+              <label> Purcchased Date: </label>
+              <div class="form-control"> {{order.create_date | date: "dd/MM/yyyy"}} </div>
+            </div>
+            <div class="form-group col-sm-6">
+              <label> Status: </label>
+              <div class="form-control"> {{order.status}} </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="form-group col-sm-6">
+              <label> Number Phone: </label>
+              <div class="form-control"> {{order.phone}} </div>
+            </div>
+            <div class="form-group col-sm-6">
               <label> Shipping Address: </label>
-              <textarea disabled class="form-control" [(ngModel)]="order.address" readonly></textarea>
+              <div class="form-control"> {{order.address}} </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
 
   <div class="card mt-3">
     <div class="card-header">ORDER LINES</div>
@@ -45,17 +49,22 @@
             <th>Product Name</th>
             <th>Price</th>
             <th>Quantity</th>
+            <th>Amount</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let oDetail of orderDetails">
             <td> {{oDetail.order_id.id}} </td>
             <td> {{oDetail.product_id.name}} </td>
-            <td> {{oDetail.price}} </td>
+            <td> ${{ oDetail.price | number: '1.2-2' }} </td>
             <td> {{oDetail.quantity}} </td>
+            <td> ${{ oDetail.price*oDetail.quantity | number: '1.2-2' }} </td>
           </tr>
         </tbody>
       </table>
+      <button [routerLink]="['/list-order']" class="btn btn-info mt-3 me-3"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4z"/>
+      </svg> Come Back </button>
     </ul>
   </div>
 </div>

@@ -18,10 +18,10 @@
             <tbody>
               <tr *ngFor="let item of items; let i = index">
                 <td> #{{ i + 1}} </td>
-                <td> {{ item.name }} </td>
+                <td> {{ item.id }} - {{ item.name }} </td>
                 <td> <img src="assets/images/{{item.images}}" style="height: 60px;" alt=""> </td>
                 <td> ${{ item.price | number: '1.2-2' }}  </td>
-                <td> <input [(ngModel)]="item.quantity" min="1" type="number" class="form-control" style="width: 70px;"> </td>
+                <td> <input [(ngModel)]="item.quantity" (change)="saveCart()" min="1" type="number" class="form-control" style="width: 70px;"> </td>
                 <td> ${{ item.price*item.quantity | number: '1.2-2' }} </td>
                 <td>
                   <button class="btn btn-sm btn-danger text-center" (click)="removeFromCart(item)">
@@ -49,7 +49,7 @@
         <form [formGroup]="exform" action="">
         <div class="row">
           <div class="form-group col-sm-6">
-            <label>Email</label>
+            <label>Email <span class="text-danger">*</span> </label>
             <input formControlName="email" [(ngModel)]="order.email_user" class="form-control" type="text">
             <small *ngIf="exform.get('email')?.invalid && exform.get('email')?.touched" class="text-danger"> email không đúng định dạng </small>
           </div>
@@ -60,12 +60,12 @@
         </div>
         <div class="row mt-3">
           <div class="form-group col-sm-6">
-            <label>Phone Number</label>
+            <label>Phone Number <span class="text-danger">*</span> </label>
             <input formControlName="phone" [(ngModel)]="order.phone" class="form-control" type="text" >
             <small *ngIf="exform.get('phone')?.invalid && exform.get('phone')?.touched" class="text-danger"> Số điện thoại không đúng định dạng </small>
           </div>
           <div class="form-group col-sm-6">
-            <label>Shipping Address</label>
+            <label>Shipping Address <span class="text-danger">*</span> </label>
             <textarea formControlName="address" [(ngModel)]="order.address" class="form-control"></textarea>
             <small *ngIf="exform.get('address')?.invalid && exform.get('address')?.touched" class="text-danger"> Địa chỉ trống </small>
           </div>

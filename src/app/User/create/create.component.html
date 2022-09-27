@@ -6,27 +6,27 @@
     <div class="card-body">
       <form [formGroup]="exform" method="" action="">
         <div class="mt-3 form-group">
-          <label>Fullname</label>
+          <label>Fullname <span class="text-danger">*</span> </label>
           <input formControlName="fullname" [(ngModel)]="user.fullname" type="text" class="form-control"/>
           <small *ngIf="exform.get('fullname')?.invalid && exform.get('fullname')?.touched" class="text-danger"> fullname trống </small>
         </div>
         <div class="mt-3">
-          <label>Email</label>
+          <label>Email <span class="text-danger">*</span> </label>
           <input formControlName="email" [(ngModel)]="user.email" type="text" class="form-control" />
           <small *ngIf="exform.get('email')?.invalid && exform.get('email')?.touched" class="text-danger"> email không đúng định dạng </small>
         </div>
         <div class="mt-3">
-          <label>Password</label>
+          <label>Password <span class="text-danger">*</span> </label>
           <input formControlName="password" [(ngModel)]="user.password" type="password" class="form-control" />
           <small *ngIf="exform.get('password')?.invalid && exform.get('password')?.touched" class="text-danger"> password phải lớn hơn 6 kí tự </small>
         </div>
         <div class="mt-3">
-          <label>Birthday</label>
+          <label>Birthday <span class="text-danger">*</span> </label>
           <input formControlName="birthday" [(ngModel)]="user.birthday" type="date" class="form-control" />
           <small *ngIf="exform.get('birthday')?.invalid && exform.get('birthday')?.touched" class="text-danger"> birthday trống </small>
         </div>
         <div class="mt-3">
-          <label>Gender</label>
+          <label>Gender <span class="text-danger">*</span> </label>
             <div class="form-check">
               <input formControlName="gender" [(ngModel)]="user.gender" type="radio" class="form-check-input" value="Nam"/>
               <label> Male </label>
@@ -39,20 +39,23 @@
           </div>
           <small *ngIf="exform.get('gender')?.invalid && exform.get('gender')?.touched" class="text-danger"> gender trống </small>
         <div class="mt-3">
-          <label>Address</label>
+          <label>Address <span class="text-danger">*</span> </label>
           <input formControlName="address" [(ngModel)]="user.address" type="text" class="form-control" />
           <small *ngIf="exform.get('address')?.invalid && exform.get('address')?.touched" class="text-danger"> address trống </small>
         </div>
         <div class="mt-3">
-          <label> Role </label>
+          <label> Role <span class="text-danger">*</span> </label>
           <select formControlName="role_id" [(ngModel)]="user.role_id.id" class="form-control">
             <option *ngFor="let role of roles" [value]="role.id"> {{ role.name }} </option>
           </select>
           <small *ngIf="exform.get('role_id')?.invalid && exform.get('role_id')?.touched" class="text-danger"> role trống </small>
         </div>
-        <button type="button" [disabled]="exform.invalid" (click)="save()" class="btn btn-success mt-3"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+        <button type="button" [disabled]="exform.invalid" (click)="save()" class="btn btn-success mt-3 me-3"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
           <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
         </svg> Create</button>
+        <button [routerLink]="['/list']" class="btn btn-info mt-3 me-3"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4z"/>
+        </svg> Come Back </button>
       </form>
     </div>
   </div>
