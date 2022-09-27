@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CategoryModel } from 'src/app/Model/CategoryModel';
 import { CategoryServiceService } from 'src/app/Service/category-service.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-create-cate',
@@ -13,7 +14,7 @@ export class CreateCateComponent implements OnInit {
 
   cate:CategoryModel = new CategoryModel();
 
-  constructor(private router:Router, private cateSer:CategoryServiceService) { }
+  constructor(private router: Router, private cateSer: CategoryServiceService, private toast: NgToastService) { }
 
   exform!: FormGroup;
 
@@ -26,9 +27,8 @@ export class CreateCateComponent implements OnInit {
   save() {
     this.cateSer.createCate(this.cate)
     .subscribe(data => {
-      alert("Thêm thành công!")
+      alert("Thêm thành công!");
       this.router.navigate(["list-cate"]);
     });
   }
-
 }

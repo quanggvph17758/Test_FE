@@ -6,6 +6,6 @@ export class ProductModel {
   images!: String;
   create_Date!: Date;
   update_Date!: Date;
-  price!: Number;
+  price!: number;
   category_id!: CategoryModel;
 }

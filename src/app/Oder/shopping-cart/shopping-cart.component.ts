@@ -39,10 +39,13 @@ export class ShoppingCartComponent implements OnInit {
       'address': new FormControl(null, Validators.required),
     });
 
-    console.log(this.items);
-
     this.orderDe.order_id = this.order;
     this.orderDe.product_id = this.pro;
+
+  }
+
+  saveCart() {
+    this.cartService.saveCart();
   }
 
   removeFromCart(item: any) {
@@ -62,14 +65,16 @@ export class ShoppingCartComponent implements OnInit {
     this.orderSer.createOrder(this.order)
     .subscribe(data => {
       this.orderDe.order_id.id = data.id;
-      this.orderDe.product_id.id = this.items.id;
-      this.orderDe.price = this.items.price;
-      this.orderDe.quantity = this.items.quantity;
+      this.items.map((item: any) => {
+        this.orderDe.product_id.id = item.id;
+        this.orderDe.price = item.price;
+        this.orderDe.quantity = item.quantity;
       this.orderDeSer.createOrderDetail(this.orderDe)
       .subscribe(data => {
-        alert("Đặt hàng thành công");
-        this.router.navigate(["home"]);
-      });
+        this.clearCart(data);
+      })});
     });
+    alert("Đặt hàng thành công");
+    this.router.navigate(["home"]);
   }
 }

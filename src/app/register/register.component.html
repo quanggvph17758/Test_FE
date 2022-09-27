@@ -6,27 +6,27 @@
     <div class="card-body">
       <form [formGroup]="exform" method="" action="">
         <div class="mt-3 form-group">
-          <label>Fullname</label>
+          <label>Fullname <span class="text-danger">*</span> </label>
           <input formControlName="fullname" [(ngModel)]="user.fullname" type="text" class="form-control"/>
           <small *ngIf="exform.get('fullname')?.invalid && exform.get('fullname')?.touched" class="text-danger"> fullname trống </small>
         </div>
         <div class="mt-3">
-          <label>Email</label>
+          <label>Email <span class="text-danger">*</span> </label>
           <input formControlName="email" [(ngModel)]="user.email" type="text" class="form-control" />
           <small *ngIf="exform.get('email')?.invalid && exform.get('email')?.touched" class="text-danger"> email không đúng định dạng </small>
         </div>
         <div class="mt-3">
-          <label>Password</label>
+          <label>Password <span class="text-danger">*</span> </label>
           <input formControlName="password" [(ngModel)]="user.password" type="password" class="form-control" />
           <small *ngIf="exform.get('password')?.invalid && exform.get('password')?.touched" class="text-danger"> password phải lớn hơn 6 kí tự </small>
         </div>
         <div class="mt-3">
-          <label>Birthday</label>
+          <label>Birthday <span class="text-danger">*</span> </label>
           <input formControlName="birthday" [(ngModel)]="user.birthday" type="date" class="form-control" />
           <small *ngIf="exform.get('birthday')?.invalid && exform.get('birthday')?.touched" class="text-danger"> birthday trống </small>
         </div>
         <div class="mt-3">
-          <label>Gender</label>
+          <label>Gender <span class="text-danger">*</span> </label>
             <div class="form-check">
               <input formControlName="gender" [(ngModel)]="user.gender" type="radio" class="form-check-input" value="Nam"/>
               <label> Male </label>
@@ -38,14 +38,17 @@
           </div>
           <small *ngIf="exform.get('gender')?.invalid && exform.get('gender')?.touched" class="text-danger"> gender trống </small>
         <div class="mt-3">
-          <label>Address</label>
+          <label>Address <span class="text-danger">*</span> </label>
           <input formControlName="address" [(ngModel)]="user.address" type="text" class="form-control" />
           <small *ngIf="exform.get('address')?.invalid && exform.get('address')?.touched" class="text-danger"> address trống </small>
         </div>
-        <button type="button" [disabled]="exform.invalid" (click)="save()" class="btn btn-success mt-3"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+        <button type="button" [disabled]="exform.invalid" (click)="save()" class="btn btn-success mt-3 me-3"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
           <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
           <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
         </svg> Register Account </button>
+        <button [routerLink]="['/login']" class="btn btn-info mt-3 me-3"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4z"/>
+        </svg> Come Back Login </button>
       </form>
     </div>
   </div>

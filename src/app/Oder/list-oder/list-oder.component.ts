@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { OrderDetailModel } from 'src/app/Model/OrderDetailModel';
 import { OrderModel } from 'src/app/Model/OrderModel';
 import { OrderServiceService } from 'src/app/Service/order-service.service';
+import { OrderdetailServiceService } from 'src/app/Service/orderdetail-service.service';
 
 @Component({
   selector: 'app-list-oder',
@@ -14,9 +15,10 @@ export class ListOderComponent implements OnInit {
 
   orders: OrderModel[] = [];
   order: OrderModel = new OrderModel();
+  items: any = [];
   email: any;
 
-  constructor(private orderSer: OrderServiceService, private router: Router) { }
+  constructor(private orderSer: OrderServiceService, private router: Router, private orderDeSer: OrderdetailServiceService) { }
 
   ngOnInit(): void {
     this.orderSer.getOrder()
@@ -25,7 +27,7 @@ export class ListOderComponent implements OnInit {
     })
   }
 
-  showOrderDetail(order: OrderModel) {
+  showOrderDetail(order: any) {
     localStorage.setItem("id", order.id.toFixed());
     this.router.navigate(["detail-order"]);
   }

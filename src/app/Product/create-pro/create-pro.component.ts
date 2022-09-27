@@ -26,7 +26,6 @@ export class CreateProComponent implements OnInit {
   ngOnInit(): void {
     this.exform = new FormGroup({
       'name': new FormControl(null, Validators.required),
-      'images': new FormControl(null, Validators.required),
       'price': new FormControl(null, Validators.required),
       'categoryId': new FormControl(null, Validators.required),
     });
@@ -53,10 +52,7 @@ export class CreateProComponent implements OnInit {
         pro.images = res.name;
         alert("Thêm Sản Phẩm thành công")
         this.router.navigate(["list-pro"]);
-       }, error => {
-        alert("Lỗi upload hình ảnh")
-        console.log("Error", error);
-       })
+       });
     })
   }
 

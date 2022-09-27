@@ -25,10 +25,6 @@ export class ListProComponent implements OnInit {
     });
   }
 
-  Create() {
-    this.router.navigate(["create-pro"]);
-  }
-
   Edit(pro:ProductModel) {
     localStorage.setItem("id", pro.id.toFixed());
     this.router.navigate(["edit-pro"]);

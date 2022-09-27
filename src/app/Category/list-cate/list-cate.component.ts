@@ -22,10 +22,6 @@ export class ListCateComponent implements OnInit {
     })
   }
 
-  Create() {
-    this.router.navigate(["create-cate"]);
-  }
-
   Edit(cate:CategoryModel) {
     localStorage.setItem("id", cate.id.toFixed());
     this.router.navigate(["edit-cate"]);
