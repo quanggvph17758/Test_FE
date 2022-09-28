@@ -27,6 +27,9 @@ export class ListCateComponent implements OnInit {
     this.router.navigate(["edit-cate"]);
   }
 
+  getRole() {
+    return sessionStorage.getItem("role");
+  }
 
   Delete(cate:CategoryModel) {
     this.cateSer.deleteCate(cate)

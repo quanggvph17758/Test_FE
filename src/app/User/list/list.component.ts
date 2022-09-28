@@ -26,6 +26,10 @@ export class ListComponent implements OnInit {
     this.router.navigate(["edit"]);
   }
 
+  getRole() {
+    return sessionStorage.getItem("role");
+  }
+
 
   Delete(user:UserModel) {
     this.userSer.deleteUser(user)
@@ -49,7 +53,6 @@ export class ListComponent implements OnInit {
   page: number = 1;
   count: number = 0;
   tableSize: number = 5;
-  //tableSizes: any = [3, 6, 9, 12];
 
   fetchPosts(){
     this.ngOnInit();

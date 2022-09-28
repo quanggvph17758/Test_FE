@@ -1,4 +1,4 @@
 export class RoleModel {
-  id!: String;
-  name!: String;
+  id!: string;
+  name!: string;
 }

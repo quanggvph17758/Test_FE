@@ -12,8 +12,8 @@ export class LoginServiceService {
 
   url = 'http://localhost:8080/test/login';
 
-  login(user:UserModel):Observable<object> {
+  login(user:UserModel) {
 
-    return this.http.post(this.url, user);
+    return this.http.post<UserModel>(this.url, user);
   }
 }

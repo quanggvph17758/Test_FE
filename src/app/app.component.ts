@@ -11,8 +11,26 @@ export class AppComponent {
 
   title = '';
 
-  user:UserModel = new UserModel();
+  constructor(private router: Router){}
 
-  constructor(private router:Router){}
+  ngOnInit() {
+
+  }
+
+  getUser() {
+   return sessionStorage.getItem("user");
+  }
+
+  logOut() {
+    sessionStorage.removeItem("user");
+    sessionStorage.removeItem("role");
+    sessionStorage.removeItem("address");
+    sessionStorage.removeItem("email");
+    this.router.navigate(["login"])
+  }
+
+  getRole() {
+    return sessionStorage.getItem("role");
+  }
 
 }

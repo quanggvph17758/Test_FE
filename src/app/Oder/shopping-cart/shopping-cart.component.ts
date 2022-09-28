@@ -30,18 +30,24 @@ export class ShoppingCartComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    this.cartService.loadCart();
-    this.items = this.cartService.getItems();
+      this.cartService.loadCart();
+      this.items = this.cartService.getItems();
 
     this.exform = new FormGroup({
-      'email': new FormControl(null, [Validators.required, Validators.pattern("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")]),
       'phone': new FormControl(null, [Validators.required, Validators.pattern("(\\+84|0)([0-9]{9}|[0-9]{10})")]),
-      'address': new FormControl(null, Validators.required),
     });
 
     this.orderDe.order_id = this.order;
     this.orderDe.product_id = this.pro;
 
+  }
+
+  getEmail()  {
+    return sessionStorage.getItem("email");
+  }
+
+  getAddress() {
+    return sessionStorage.getItem("address");
   }
 
   saveCart() {
