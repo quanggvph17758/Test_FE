@@ -33,7 +33,7 @@ export class ProductServiceService {
     return this.http.delete<ProductModel>(this.url + "/" + pro.id);
   }
 
-  getProductByCategoryId() {
-    return this.http.get<ProductModel>(this.url2);
+  getProductByCategoryId(id: Number): Observable<any> {
+    return this.http.get<ProductModel>(this.url2 + "/" + id);
   }
 }

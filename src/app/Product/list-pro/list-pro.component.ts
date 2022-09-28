@@ -30,6 +30,10 @@ export class ListProComponent implements OnInit {
     this.router.navigate(["edit-pro"]);
   }
 
+  getRole() {
+    return sessionStorage.getItem("role");
+  }
+
 
   Delete(pro:ProductModel) {
     this.proSer.deletePro(pro)

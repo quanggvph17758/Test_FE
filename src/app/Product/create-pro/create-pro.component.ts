@@ -45,18 +45,18 @@ export class CreateProComponent implements OnInit {
     pro.create_Date = this.createDate
     this.proSer.createPro(pro)
     .subscribe(data => {
-      var formdata = new FormData();
-      formdata.append('files', this.uploadFile || [0]);
-       this.uploadSer.uploadFile(formdata)
-       .subscribe(res => {
-        pro.images = res.name;
+      // var formdata = new FormData();
+      // formdata.append('files', this.uploadFile || [0]);
+      //  this.uploadSer.uploadFile(formdata)
+      //  .subscribe(res => {
+      //   data.images = res.name;
         alert("Thêm Sản Phẩm thành công")
         this.router.navigate(["list-pro"]);
-       });
-    })
+      //});
+    });
   }
 
-  onChange() {
-    this.uploadFile;
-  }
+  // onChange() {
+  //   this.uploadFile;
+  // }
 }

@@ -52,6 +52,10 @@ export class ListOderComponent implements OnInit {
     });
   }
 
+  getRole() {
+    return sessionStorage.getItem("role");
+  }
+
   page: number = 1;
   count: number = 0;
   tableSize: number = 5;
@@ -74,7 +78,7 @@ export class ListOderComponent implements OnInit {
       this.ngOnInit();
     } else {
       this.orders = this.orders.filter(data => {
-        return data.email_user.toLocaleLowerCase().match(this.email.toLocaleLowerCase());
+        return data.user_id.email.toLocaleLowerCase().match(this.email.toLocaleLowerCase());
       });
     }
   }

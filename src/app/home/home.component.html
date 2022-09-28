@@ -38,7 +38,9 @@
         <div class="card-header">Danh Sách Sản Phẩm</div>
         <ul class="list-group list-group-flush">
           <a class="list-group-item" *ngFor="let cate of cates">
+          <div (click)="showByCate(cate)" >
             {{ cate.name }}
+          </div>
           </a>
         </ul>
       </div>

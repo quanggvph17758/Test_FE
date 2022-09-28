@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CategoryModel } from '../Model/CategoryModel';
 import { ProductModel } from '../Model/ProductModel';
 import { CartServiceService } from '../Service/cart-service.service';
@@ -17,7 +18,7 @@ export class HomeComponent implements OnInit {
   pro: ProductModel = new ProductModel();
   items: any = [];
 
-  constructor(private proSer:ProductServiceService, private cateSer:CategoryServiceService, private cartService: CartServiceService) { }
+  constructor(private proSer:ProductServiceService, private cateSer:CategoryServiceService, private cartService: CartServiceService, private router: Router) { }
 
   ngOnInit(): void {
     this.proSer.getPro()
@@ -31,7 +32,31 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  listByCate() {
+    let id = localStorage.getItem("id");
+    this.cateSer.getCateId(Number(id))
+    .subscribe(data => {
+      this.proSer.getProductByCategoryId(data.id)
+      .subscribe(data => {
+        this.pros = data;
+      });
+    })
+  }
+
+  showByCate(cate:CategoryModel) {
+    localStorage.setItem("id", cate.id.toFixed());
+    this.listByCate();
+  }
+
+  getUser() {
+    return sessionStorage.getItem("user");
+  }
+
   addToCart(pro: any) {
+    if (this.getUser() == null) {
+      alert("Vui Lòng Đăng Nhập Để Đặt Hàng");
+      this.router.navigate(["login"]);
+    } else {
     if (!this.cartService.itemInCart(pro)) {
       pro.quantity = 1;
       this.cartService.addToCart(pro);
@@ -40,6 +65,7 @@ export class HomeComponent implements OnInit {
     } else {
       alert("Sản phẩm đã có trong giỏ hàng!")
     }
+  }
   }
 
 

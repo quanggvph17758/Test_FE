@@ -2,11 +2,11 @@ import { RoleModel } from "./RoleModel";
 
 export class UserModel {
     id!:Number;
-    fullname!:String;
-    email!:String;
-    password!:String
-    gender!:String;
+    fullname!:string;
+    email!:string;
+    password!:string
+    gender!:string;
     birthday!:Date;
-    address!:String;
+    address!:string;
     role_id!: RoleModel;
 }
