@@ -62,6 +62,7 @@ export class HomeComponent implements OnInit {
       this.cartService.addToCart(pro);
       this.items = [this.cartService.getItems()];
       alert("Thêm sản phẩm vào giỏ hàng thành công!")
+      sessionStorage.setItem("item", pro.id);
     } else {
       alert("Sản phẩm đã có trong giỏ hàng!")
     }

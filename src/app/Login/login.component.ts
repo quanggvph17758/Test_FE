@@ -29,6 +29,11 @@ export class LoginComponent implements OnInit {
   LoginForm() {
     this.lgService.login(this.user)
     .subscribe(data => {
+      if (data.active == "0") {
+        alert("Tài khoản của bạn đã bị khóa");
+        this.user.email = "";
+        this.user.password = "";
+      } else {
       sessionStorage.setItem("id", String(data.id));
       sessionStorage.setItem("user", data.fullname);
       sessionStorage.setItem("role", data.role_id.id);
@@ -36,6 +41,7 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem("email", data.email);
       alert("Đăng Nhập Thành Công!");
       this.router.navigate(['home']);
-    }, error => alert("Đăng Nhập Thất Bại!"));
+      }
+    }, error => alert("Tài khoản không tồn tại!"));
   }
 }

@@ -42,6 +42,10 @@ export class EditComponent implements OnInit {
     this.user.role_id = this.role;
   }
 
+  getRole() {
+    return sessionStorage.getItem("role");
+  }
+
   Edit() {
     let id = localStorage.getItem("id");
     this.service.getUserId(Number(id))
@@ -63,7 +67,6 @@ export class EditComponent implements OnInit {
   Reset() {
     this.user.fullname = "";
     this.user.email = "";
-    this.user.password = "";
     this.user.birthday = new Date();
     this.user.gender = "";
     this.user.address = "";
