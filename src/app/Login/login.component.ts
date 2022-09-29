@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
   LoginForm() {
     this.lgService.login(this.user)
     .subscribe(data => {
+      sessionStorage.setItem("id", String(data.id));
       sessionStorage.setItem("user", data.fullname);
       sessionStorage.setItem("role", data.role_id.id);
       sessionStorage.setItem("address", data.address);

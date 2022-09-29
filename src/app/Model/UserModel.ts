@@ -1,7 +1,7 @@
 import { RoleModel } from "./RoleModel";
 
 export class UserModel {
-    id!:Number;
+    id!:number;
     fullname!:string;
     email!:string;
     password!:string

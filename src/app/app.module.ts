@@ -25,6 +25,7 @@ import { ShoppingCartComponent } from './Oder/shopping-cart/shopping-cart.compon
 import { ListOderComponent } from './Oder/list-oder/list-oder.component';
 import { DetailOderComponent } from './Oder/detail-oder/detail-oder.component';
 import { NgToastModule } from 'ng-angular-popup';
+import { YourOderComponent } from './Oder/your-oder/your-oder.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +44,7 @@ import { NgToastModule } from 'ng-angular-popup';
     ShoppingCartComponent,
     ListOderComponent,
     DetailOderComponent,
+    YourOderComponent,
   ],
   imports: [
     BrowserModule,
