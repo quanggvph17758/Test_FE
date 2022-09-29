@@ -57,17 +57,23 @@ export class ShoppingCartComponent implements OnInit {
     return sessionStorage.getItem("address");
   }
 
+  getItem() {
+    return sessionStorage.getItem("item");
+  }
+
   saveCart() {
     this.cartService.saveCart();
   }
 
   removeFromCart(item: any) {
     this.cartService.removeItem(item);
+    sessionStorage.removeItem("item");
     this.items = this.cartService.getItems();
   }
 
   clearCart(items: any) {
     this.cartService.clearCart(items);
+    sessionStorage.removeItem("item");
     this.items = [this.cartService.getItems()];
     this.ngOnInit();
   }

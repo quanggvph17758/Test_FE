@@ -8,5 +8,6 @@ export class UserModel {
     gender!:string;
     birthday!:Date;
     address!:string;
+    active!: string;
     role_id!: RoleModel;
 }

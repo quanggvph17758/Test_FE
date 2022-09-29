@@ -26,6 +26,8 @@ export class AppComponent {
     sessionStorage.removeItem("role");
     sessionStorage.removeItem("address");
     sessionStorage.removeItem("email");
+    sessionStorage.removeItem("id");
+    sessionStorage.removeItem("item");
     this.router.navigate(["login"])
   }
 
