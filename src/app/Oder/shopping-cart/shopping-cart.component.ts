@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OrderModel } from 'src/app/Model/OrderModel';
 import { ProductModel } from 'src/app/Model/ProductModel';
+import { UserModel } from 'src/app/Model/UserModel';
 import { OrderServiceService } from 'src/app/Service/order-service.service';
 import { OrderDetailModel } from '../../Model/OrderDetailModel';
 import { CartServiceService } from '../../Service/cart-service.service';
@@ -19,6 +20,7 @@ export class ShoppingCartComponent implements OnInit {
   items: any = [];
   order: OrderModel = new OrderModel();
   pro: ProductModel = new ProductModel();
+  user: UserModel = new UserModel();
   orderDe: OrderDetailModel = new OrderDetailModel();
   createDate = new Date();
 
@@ -39,7 +41,12 @@ export class ShoppingCartComponent implements OnInit {
 
     this.orderDe.order_id = this.order;
     this.orderDe.product_id = this.pro;
+    this.order.user_id = this.user;
 
+  }
+
+  getUserId() {
+    return sessionStorage.getItem("id");
   }
 
   getEmail()  {
@@ -68,6 +75,8 @@ export class ShoppingCartComponent implements OnInit {
   checkOut() {
     this.order.create_date = this.createDate;
     this.order.status = "Chờ Xác Nhận";
+    this.order.address = String(sessionStorage.getItem("address"));
+    this.order.user_id.id = Number(sessionStorage.getItem("id"));
     this.orderSer.createOrder(this.order)
     .subscribe(data => {
       this.orderDe.order_id.id = data.id;

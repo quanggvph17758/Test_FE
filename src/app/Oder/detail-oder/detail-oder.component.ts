@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderDetailModel } from 'src/app/Model/OrderDetailModel';
 import { OrderModel } from 'src/app/Model/OrderModel';
+import { UserModel } from 'src/app/Model/UserModel';
 import { CartServiceService } from 'src/app/Service/cart-service.service';
 import { OrderServiceService } from 'src/app/Service/order-service.service';
 import { OrderdetailServiceService } from 'src/app/Service/orderdetail-service.service';
@@ -14,6 +15,7 @@ export class DetailOderComponent implements OnInit {
 
   orderDetails: OrderDetailModel[] = [];
   orderDetail: OrderDetailModel = new OrderDetailModel();
+  user: UserModel = new UserModel();
   order: OrderModel = new OrderModel();
   items: any = [];
 
@@ -29,6 +31,8 @@ export class DetailOderComponent implements OnInit {
         this.orderDetails = data;
       })
     });
+
+    this.order.user_id = this.user;
   }
 }
 

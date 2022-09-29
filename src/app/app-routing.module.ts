@@ -15,6 +15,7 @@ import { ShoppingCartComponent } from './Oder/shopping-cart/shopping-cart.compon
 import { CreateComponent } from './User/create/create.component';
 import { EditComponent } from './User/edit/edit.component';
 import { ListComponent } from './User/list/list.component';
+import { YourOderComponent } from './Oder/your-oder/your-oder.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path:'cart', component:ShoppingCartComponent},
   {path:'detail-order', component:DetailOderComponent},
   {path:'list-order', component:ListOderComponent},
+  {path:'your-order', component:YourOderComponent},
 ];
 
 @NgModule({

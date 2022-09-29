@@ -9,6 +9,7 @@ import { OrderModel } from '../Model/OrderModel';
 export class OrderServiceService {
 
   url = 'http://localhost:8080/test/order';
+  url2 = 'http://localhost:8080/test/yourorder';
 
   constructor(private http:HttpClient) { }
 
@@ -30,5 +31,9 @@ export class OrderServiceService {
 
   deleteOrder(order: OrderModel) {
     return this.http.delete<OrderModel>(this.url + "/" + order.id);
+  }
+
+  getOrderByUserId(id: Number): Observable<any> {
+    return this.http.get<OrderModel>(this.url2 + "/" + id);
   }
 }
