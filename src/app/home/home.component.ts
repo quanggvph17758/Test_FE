@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoryModel } from '../Model/CategoryModel';
+import { FavouriteModel } from '../Model/FavouriteModel';
 import { ProductModel } from '../Model/ProductModel';
+import { UserModel } from '../Model/UserModel';
 import { CartServiceService } from '../Service/cart-service.service';
 import { CategoryServiceService } from '../Service/category-service.service';
+import { FavouriteServiceService } from '../Service/favourite-service.service';
 import { ProductServiceService } from '../Service/product-service.service';
 
 @Component({
@@ -15,10 +18,17 @@ export class HomeComponent implements OnInit {
 
   pros:ProductModel[] = [];
   cates:CategoryModel[] = [];
+  fav: FavouriteModel = new FavouriteModel();
+  user: UserModel = new UserModel();
   pro: ProductModel = new ProductModel();
   items: any = [];
+  itemsFav: any = [];
 
-  constructor(private proSer:ProductServiceService, private cateSer:CategoryServiceService, private cartService: CartServiceService, private router: Router) { }
+  constructor(private proSer:ProductServiceService,
+              private cateSer:CategoryServiceService,
+              private cartService: CartServiceService,
+              private router: Router,
+              private favSer: FavouriteServiceService) { }
 
   ngOnInit(): void {
     this.proSer.getPro()
@@ -30,6 +40,9 @@ export class HomeComponent implements OnInit {
     .subscribe(data => {
       this.cates=data;
     });
+
+    this.fav.user_id = this.user;
+    this.fav.product_id = this.pro;
   }
 
   listByCate() {
@@ -67,6 +80,15 @@ export class HomeComponent implements OnInit {
       alert("Sản phẩm đã có trong giỏ hàng!")
     }
   }
+  }
+
+  addToFavourite(pro: any) {
+    this.fav.user_id.id = Number(sessionStorage.getItem("id"));
+    this.fav.product_id.id = pro.id;
+    this.favSer.createFavourite(this.fav)
+    .subscribe(data => {
+      alert("Thêm sản phẩm vào mục yêu thích thành công!");
+    });
   }
 
 
