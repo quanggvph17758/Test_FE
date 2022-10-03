@@ -27,6 +27,7 @@ import { DetailOderComponent } from './Oder/detail-oder/detail-oder.component';
 import { NgToastModule } from 'ng-angular-popup';
 import { YourOderComponent } from './Oder/your-oder/your-oder.component';
 import { YourOderDetailComponent } from './Oder/your-oder-detail/your-oder-detail.component';
+import { ListFavouriteComponent } from './Favourite/list-favourite/list-favourite.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +48,7 @@ import { YourOderDetailComponent } from './Oder/your-oder-detail/your-oder-detai
     DetailOderComponent,
     YourOderComponent,
     YourOderDetailComponent,
+    ListFavouriteComponent,
   ],
   imports: [
     BrowserModule,

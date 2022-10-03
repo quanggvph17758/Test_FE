@@ -17,6 +17,7 @@ import { EditComponent } from './User/edit/edit.component';
 import { ListComponent } from './User/list/list.component';
 import { YourOderComponent } from './Oder/your-oder/your-oder.component';
 import { YourOderDetailComponent } from './Oder/your-oder-detail/your-oder-detail.component';
+import { ListFavouriteComponent } from './Favourite/list-favourite/list-favourite.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
@@ -37,6 +38,7 @@ const routes: Routes = [
   {path:'list-order', component:ListOderComponent},
   {path:'your-order', component:YourOderComponent},
   {path:'your-orderDetail', component:YourOderDetailComponent},
+  {path:'favourite', component:ListFavouriteComponent},
 ];
 
 @NgModule({
