@@ -12,6 +12,7 @@ import { CategoryServiceService } from 'src/app/Service/category-service.service
 export class EditCateComponent implements OnInit {
 
   cate:CategoryModel = new CategoryModel();
+  updateDate = new Date();
 
   constructor(private router:Router, private cateSer:CategoryServiceService) { }
 
@@ -34,6 +35,8 @@ export class EditCateComponent implements OnInit {
 
 
   Update(cate:CategoryModel) {
+    cate.update_Date = this.updateDate;
+    cate.update_user = String(sessionStorage.getItem("user"));
     this.cateSer.updateCate(cate)
     .subscribe(data => {
       cate = data;

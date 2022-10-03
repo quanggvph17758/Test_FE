@@ -16,6 +16,7 @@ import { CreateComponent } from './User/create/create.component';
 import { EditComponent } from './User/edit/edit.component';
 import { ListComponent } from './User/list/list.component';
 import { YourOderComponent } from './Oder/your-oder/your-oder.component';
+import { YourOderDetailComponent } from './Oder/your-oder-detail/your-oder-detail.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
@@ -35,6 +36,7 @@ const routes: Routes = [
   {path:'detail-order', component:DetailOderComponent},
   {path:'list-order', component:ListOderComponent},
   {path:'your-order', component:YourOderComponent},
+  {path:'your-orderDetail', component:YourOderDetailComponent},
 ];
 
 @NgModule({

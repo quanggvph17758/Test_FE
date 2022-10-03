@@ -13,6 +13,7 @@ import { NgToastService } from 'ng-angular-popup';
 export class CreateCateComponent implements OnInit {
 
   cate:CategoryModel = new CategoryModel();
+  createDate = new Date();
 
   constructor(private router: Router, private cateSer: CategoryServiceService, private toast: NgToastService) { }
 
@@ -25,6 +26,7 @@ export class CreateCateComponent implements OnInit {
   }
 
   save() {
+    this.cate.create_Date = this.createDate;
     this.cateSer.createCate(this.cate)
     .subscribe(data => {
       alert("Thêm thành công!");

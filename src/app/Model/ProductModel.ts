@@ -8,4 +8,5 @@ export class ProductModel {
   update_Date!: Date;
   price!: number;
   category_id!: CategoryModel;
+  update_user!: string;
 }

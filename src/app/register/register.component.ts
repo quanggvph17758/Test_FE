@@ -35,10 +35,11 @@ export class RegisterComponent implements OnInit {
 
   save() {
     this.user.role_id.id = "KH";
+    this.user.active = "0";
     this.service.registerUser(this.user)
     .subscribe(data => {
       alert("Đăng ký thành công!")
-      this.router.navigate(["list"]);
+      this.router.navigate(["login"]);
     });
   }
 }
