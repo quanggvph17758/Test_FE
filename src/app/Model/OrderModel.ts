@@ -1,11 +1,11 @@
 import { UserModel } from "./UserModel";
 
 export class OrderModel {
-  id!: Number;
+  id!: number;
   user_id!: UserModel;
-  //user_id!: string;
   create_date!: Date;
-  phone!: String;
-  address!: String;
-  status!: String;
+  phone!: string;
+  address!: string;
+  status!: string;
+  update_user!: string
 }

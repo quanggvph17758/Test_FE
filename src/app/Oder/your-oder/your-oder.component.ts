@@ -27,7 +27,7 @@ export class YourOderComponent implements OnInit {
 
   showOrderDetail(order: any) {
     localStorage.setItem("id", order.id.toFixed());
-    this.router.navigate(["detail-order"]);
+    this.router.navigate(["your-orderDetail"]);
   }
 
   HuyDonHang(order: OrderModel) {

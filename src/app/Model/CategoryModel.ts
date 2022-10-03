@@ -1,4 +1,7 @@
 export class CategoryModel {
-  id!: Number;
-  name!: String;
+  id!: number;
+  name!: string;
+  create_Date!: Date;
+  update_Date!: Date;
+  update_user!: string;
 }

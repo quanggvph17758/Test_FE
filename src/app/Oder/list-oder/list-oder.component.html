@@ -16,6 +16,7 @@
               <th>Name</th>
               <th>Order Date</th>
               <th>Status</th>
+              <th> Update User </th>
               <th colspan="3">Action</th>
             </tr>
           </thead>
@@ -26,6 +27,7 @@
               <td> {{ o.user_id.fullname }} </td>
               <td> {{ o.create_date | date: "dd/MM/yyyy" }} </td>
               <td> {{ o.status }} </td>
+              <td> {{ o.update_user }} </td>
               <td class="text-center">
                 <button (click)="showOrderDetail(o)" class="btn btn-default btn-primary">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16" >

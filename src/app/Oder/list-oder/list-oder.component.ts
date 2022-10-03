@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { OrderDetailModel } from 'src/app/Model/OrderDetailModel';
 import { OrderModel } from 'src/app/Model/OrderModel';
 import { OrderServiceService } from 'src/app/Service/order-service.service';
 import { OrderdetailServiceService } from 'src/app/Service/orderdetail-service.service';
@@ -34,6 +33,7 @@ export class ListOderComponent implements OnInit {
 
   XacNhan(order: OrderModel) {
     order.status = "Đã Xác Nhận";
+    order.update_user = String(sessionStorage.getItem("user"));
     this.orderSer.update(order)
     .subscribe(data => {
       order = data;
@@ -44,6 +44,7 @@ export class ListOderComponent implements OnInit {
 
   HuyDonHang(order: OrderModel) {
     order.status = "Hủy Đơn Hàng";
+    order.update_user = String(sessionStorage.getItem("user"));
     this.orderSer.update(order)
     .subscribe(data => {
       order = data;

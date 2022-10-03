@@ -18,7 +18,6 @@ export class EditProComponent implements OnInit {
   cates:CategoryModel[]=[];
   cate: CategoryModel = new CategoryModel();
   updateDate = new Date();
-  createDate!: Date;
 
   constructor(private proSer:ProductServiceService, private cateSer:CategoryServiceService, private router:Router, private uploadSer: UploadImgService) { }
 
@@ -44,13 +43,13 @@ export class EditProComponent implements OnInit {
     this.proSer.getProId(Number(id))
     .subscribe(data => {
       this.pro=data;
-      this.createDate = data.create_Date;
     });
   }
 
 
   Update(pro:ProductModel) {
     pro.update_Date = this.updateDate;
+    pro.update_user = String(sessionStorage.getItem("user"));
     this.proSer.updatePro(pro)
     .subscribe(data => {
       pro = data;
