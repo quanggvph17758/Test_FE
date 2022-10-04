@@ -83,12 +83,17 @@ export class HomeComponent implements OnInit {
   }
 
   addToFavourite(pro: any) {
-    this.fav.user_id.id = Number(sessionStorage.getItem("id"));
-    this.fav.product_id.id = pro.id;
-    this.favSer.createFavourite(this.fav)
-    .subscribe(data => {
-      alert("Thêm sản phẩm vào mục yêu thích thành công!");
-    });
+    if (this.getUser() == null) {
+      alert("Vui Lòng Đăng Nhập!");
+      this.router.navigate(["login"]);
+    } else {
+        this.fav.user_id.id = Number(sessionStorage.getItem("id"));
+        this.fav.product_id.id = pro.id;
+        this.favSer.createFavourite(this.fav)
+        .subscribe(data => {
+          alert("Thêm sản phẩm vào mục yêu thích thành công!");
+        });
+    }
   }
 
 
