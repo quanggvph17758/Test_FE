@@ -42,6 +42,6 @@ export class LoginComponent implements OnInit {
       alert("Đăng Nhập Thành Công!");
       this.router.navigate(['home']);
       }
-    }, error => alert("Tài khoản không tồn tại!"));
+    }, error => alert("Đăng nhập thất bại!"));
   }
 }

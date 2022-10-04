@@ -22,13 +22,8 @@ export class AppComponent {
   }
 
   logOut() {
-    sessionStorage.removeItem("user");
-    sessionStorage.removeItem("role");
-    sessionStorage.removeItem("address");
-    sessionStorage.removeItem("email");
-    sessionStorage.removeItem("id");
-    sessionStorage.removeItem("item");
-    this.router.navigate(["login"])
+    sessionStorage.clear();
+    this.router.navigate(["login"]);
   }
 
   getRole() {
