@@ -1,0 +1,10 @@
+
+.anh img {
+  width: 250px;
+  height: 250px;
+  transition-duration: 0.3s;
+}
+
+.anh img:hover {
+  transform: scale(1.2);
+}

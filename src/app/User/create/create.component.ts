@@ -19,8 +19,8 @@ export class CreateComponent implements OnInit {
   roles: RoleModel[]=[];
 
 
-  constructor(private router:Router,
-              private service:UserServiceService,
+  constructor(private router: Router,
+              private service: UserServiceService,
               private roleSer: RoleServiceService,) { }
 
   exform!: FormGroup;
@@ -47,7 +47,6 @@ export class CreateComponent implements OnInit {
   save() {
     this.service.CreateUser(this.user)
     .subscribe(data => {
-      this.user = data;
       alert("Thêm thành công");
       this.router.navigate(["list"]);
     });
