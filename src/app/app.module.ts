@@ -28,6 +28,8 @@ import { NgToastModule } from 'ng-angular-popup';
 import { YourOderComponent } from './Oder/your-oder/your-oder.component';
 import { YourOderDetailComponent } from './Oder/your-oder-detail/your-oder-detail.component';
 import { ListFavouriteComponent } from './Favourite/list-favourite/list-favourite.component';
+import { UpdateComponent } from './YourProfile/update/update.component';
+import { ChangePasswordComponent } from './YourProfile/change-password/change-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +51,8 @@ import { ListFavouriteComponent } from './Favourite/list-favourite/list-favourit
     YourOderComponent,
     YourOderDetailComponent,
     ListFavouriteComponent,
+    UpdateComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,

@@ -87,11 +87,11 @@ export class HomeComponent implements OnInit {
       alert("Vui Lòng Đăng Nhập!");
       this.router.navigate(["login"]);
     } else {
-        this.fav.user_id.id = Number(sessionStorage.getItem("id"));
-        this.fav.product_id.id = pro.id;
-        this.favSer.createFavourite(this.fav)
-        .subscribe(data => {
-          alert("Thêm sản phẩm vào mục yêu thích thành công!");
+          this.fav.user_id.id = Number(sessionStorage.getItem("id"));
+          this.fav.product_id.id = pro.id;
+          this.favSer.createFavourite(this.fav)
+          .subscribe(data => {
+            alert("Thêm sản phẩm vào mục yêu thích thành công!");
         });
     }
   }

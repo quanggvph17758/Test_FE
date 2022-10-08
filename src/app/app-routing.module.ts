@@ -18,6 +18,8 @@ import { ListComponent } from './User/list/list.component';
 import { YourOderComponent } from './Oder/your-oder/your-oder.component';
 import { YourOderDetailComponent } from './Oder/your-oder-detail/your-oder-detail.component';
 import { ListFavouriteComponent } from './Favourite/list-favourite/list-favourite.component';
+import { UpdateComponent } from './YourProfile/update/update.component';
+import { ChangePasswordComponent } from './YourProfile/change-password/change-password.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
@@ -39,6 +41,8 @@ const routes: Routes = [
   {path:'your-order', component:YourOderComponent},
   {path:'your-orderDetail', component:YourOderDetailComponent},
   {path:'favourite', component:ListFavouriteComponent},
+  {path:'yourProfile', component:UpdateComponent},
+  {path:'changePass', component:ChangePasswordComponent},
 ];
 
 @NgModule({
