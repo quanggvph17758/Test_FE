@@ -29,8 +29,8 @@ export class CreateCateComponent implements OnInit {
     this.cate.create_Date = this.createDate;
     this.cateSer.createCate(this.cate)
     .subscribe(data => {
-      alert("Thêm thành công!");
+      this.toast.success({summary:"Thêm Danh Mục Sản Phẩm " + this.cate.name + "Thành Công" , duration:3000});
       this.router.navigate(["list-cate"]);
-    });
+    }, error => this.toast.error({summary:"Thêm Danh Mục Sản Phẩm Thất Bại" , duration:3000}));
   }
 }

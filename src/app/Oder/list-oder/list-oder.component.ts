@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { OrderModel } from 'src/app/Model/OrderModel';
 import { OrderServiceService } from 'src/app/Service/order-service.service';
 import { OrderdetailServiceService } from 'src/app/Service/orderdetail-service.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-list-oder',
@@ -17,7 +18,10 @@ export class ListOderComponent implements OnInit {
   items: any = [];
   email: any;
 
-  constructor(private orderSer: OrderServiceService, private router: Router, private orderDeSer: OrderdetailServiceService) { }
+  constructor(private orderSer: OrderServiceService,
+              private router: Router,
+              private orderDeSer: OrderdetailServiceService,
+              private toast: NgToastService) { }
 
   ngOnInit(): void {
     this.orderSer.getOrder()
@@ -37,9 +41,9 @@ export class ListOderComponent implements OnInit {
     this.orderSer.update(order)
     .subscribe(data => {
       order = data;
-      alert("Xác nhận đơn hàng thành công");
+      this.toast.success({summary:"Xác Nhận Đơn Hàng " + order.id + " Thành Công" , duration:3000});
       this.ngOnInit();
-    });
+    }, error =>  this.toast.error({summary:"Xác Nhận Đơn Hàng Thất Bại" , sticky: true}));
   }
 
   HuyDonHang(order: OrderModel) {
@@ -48,9 +52,9 @@ export class ListOderComponent implements OnInit {
     this.orderSer.update(order)
     .subscribe(data => {
       order = data;
-      alert("Hủy đơn hàng thành công");
+      this.toast.success({summary:"Huỷ Đơn Hàng " + order.id + " Thành Công" , duration:3000});
       this.ngOnInit();
-    });
+    }, error =>  this.toast.error({summary:"Hủy Đơn Hàng Thất Bại" , sticky: true}));
   }
 
   getRole() {

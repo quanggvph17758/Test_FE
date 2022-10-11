@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoryModel } from '../Model/CategoryModel';
-import { FavouriteModel } from '../Model/FavouriteModel';
 import { ProductModel } from '../Model/ProductModel';
 import { UserModel } from '../Model/UserModel';
 import { CartServiceService } from '../Service/cart-service.service';
 import { CategoryServiceService } from '../Service/category-service.service';
-import { FavouriteServiceService } from '../Service/favourite-service.service';
 import { ProductServiceService } from '../Service/product-service.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-home',
@@ -18,17 +17,15 @@ export class HomeComponent implements OnInit {
 
   pros:ProductModel[] = [];
   cates:CategoryModel[] = [];
-  fav: FavouriteModel = new FavouriteModel();
   user: UserModel = new UserModel();
   pro: ProductModel = new ProductModel();
   items: any = [];
-  itemsFav: any = [];
 
   constructor(private proSer:ProductServiceService,
               private cateSer:CategoryServiceService,
               private cartService: CartServiceService,
               private router: Router,
-              private favSer: FavouriteServiceService) { }
+              private toast: NgToastService) { }
 
   ngOnInit(): void {
     this.proSer.getPro()
@@ -40,9 +37,6 @@ export class HomeComponent implements OnInit {
     .subscribe(data => {
       this.cates=data;
     });
-
-    this.fav.user_id = this.user;
-    this.fav.product_id = this.pro;
   }
 
   listByCate() {
@@ -67,32 +61,18 @@ export class HomeComponent implements OnInit {
 
   addToCart(pro: any) {
     if (this.getUser() == null) {
-      alert("Vui Lòng Đăng Nhập Để Đặt Hàng");
+      this.toast.warning({summary:"Vui Lòng Đăng Nhập Để Mua Hàng" , duration:3000});
       this.router.navigate(["login"]);
     } else {
-    if (!this.cartService.itemInCart(pro)) {
-      pro.quantity = 1;
-      this.cartService.addToCart(pro);
-      this.items = [this.cartService.getItems()];
-      alert("Thêm sản phẩm vào giỏ hàng thành công!")
-      sessionStorage.setItem("item", pro.id);
-    } else {
-      alert("Sản phẩm đã có trong giỏ hàng!")
-    }
-  }
-  }
-
-  addToFavourite(pro: any) {
-    if (this.getUser() == null) {
-      alert("Vui Lòng Đăng Nhập!");
-      this.router.navigate(["login"]);
-    } else {
-          this.fav.user_id.id = Number(sessionStorage.getItem("id"));
-          this.fav.product_id.id = pro.id;
-          this.favSer.createFavourite(this.fav)
-          .subscribe(data => {
-            alert("Thêm sản phẩm vào mục yêu thích thành công!");
-        });
+      if (!this.cartService.itemInCart(pro)) {
+        pro.quantity = 1;
+        this.cartService.addToCart(pro);
+        this.items = [this.cartService.getItems()];
+        this.toast.success({summary:"Thêm Sản Phẩm " + pro.name + " Thành Công" , duration:3000});
+        sessionStorage.setItem("item", pro.id);
+      } else {
+        this.toast.warning({summary:"Sản Phẩm " + pro.name + " Đã Có Trong Giỏ Hàng" , duration:3000});
+      }
     }
   }
 
@@ -104,10 +84,12 @@ export class HomeComponent implements OnInit {
   fetchPosts(){
     this.ngOnInit();
   }
+
   onTableDataChange(event: any) {
     this.page = event;
     this.fetchPosts();
   }
+
   onTableSizeChange(event: any): void {
     this.tableSize = event.target.value;
     this.page = 1;

@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -6,6 +5,7 @@ import { RoleModel } from 'src/app/Model/RoleModel';
 import { UserModel } from 'src/app/Model/UserModel';
 import { RoleServiceService } from 'src/app/Service/role-service.service';
 import { UserServiceService } from 'src/app/Service/user-service.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-edit',
@@ -19,7 +19,10 @@ export class EditComponent implements OnInit {
   role: RoleModel = new RoleModel();
   user:UserModel = new UserModel();
 
-  constructor(private router:Router, private service:UserServiceService, private roleSer: RoleServiceService) { }
+  constructor(private router:Router,
+              private service:UserServiceService,
+              private roleSer: RoleServiceService,
+              private toast: NgToastService) { }
 
   exform!: FormGroup;
 
@@ -59,9 +62,9 @@ export class EditComponent implements OnInit {
     this.service.updateUser(user)
     .subscribe(data => {
       user = data;
-      alert("Update Thành Công!");
+      this.toast.success({summary:"Cập nhật Tài Khoản " + user.fullname + " Thành Công", duration:3000});
       this.router.navigate(["list"]);
-    });
+    },error => this.toast.error({summary:"Cập nhật Thất Bại", sticky:true}));
   }
 
   Reset() {
@@ -70,9 +73,5 @@ export class EditComponent implements OnInit {
     this.user.birthday = new Date();
     this.user.gender = "";
     this.user.address = "";
-  }
-
-  List() {
-    this.router.navigate(["list"])
   }
 }

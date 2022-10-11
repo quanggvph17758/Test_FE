@@ -6,6 +6,7 @@ import { ProductModel } from 'src/app/Model/ProductModel';
 import { CategoryServiceService } from 'src/app/Service/category-service.service';
 import { ProductServiceService } from 'src/app/Service/product-service.service';
 import { UploadImgService } from 'src/app/Service/upload-img.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-create-pro',
@@ -19,7 +20,11 @@ export class CreateProComponent implements OnInit {
   cate: CategoryModel = new CategoryModel();
   createDate = new Date();
 
-  constructor(private proSer:ProductServiceService, private cateSer:CategoryServiceService, private router:Router, private uploadSer: UploadImgService) { }
+  constructor(private proSer:ProductServiceService,
+              private cateSer:CategoryServiceService,
+              private router:Router,
+              private uploadSer: UploadImgService,
+              private toast: NgToastService) { }
 
   exform!: FormGroup;
 
@@ -50,10 +55,10 @@ export class CreateProComponent implements OnInit {
       //  this.uploadSer.uploadFile(formdata)
       //  .subscribe(res => {
       //   data.images = res.name;
-        alert("Thêm Sản Phẩm thành công")
+        this.toast.success({summary:"Thêm Sản Phẩm " + pro.name + " Thành Công" , duration:3000});
         this.router.navigate(["list-pro"]);
       //});
-    });
+    }, error => this.toast.error({summary:"Thêm Sản Phẩm Thất Bại" , sticky: true}));
   }
 
   // onChange() {

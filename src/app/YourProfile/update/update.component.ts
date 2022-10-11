@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserModel } from 'src/app/Model/UserModel';
 import { UserServiceService } from 'src/app/Service/user-service.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-update',
@@ -13,7 +14,7 @@ export class UpdateComponent implements OnInit {
   user:UserModel = new UserModel();
 
 
-  constructor(private router:Router, private service:UserServiceService,) { }
+  constructor(private router:Router, private service:UserServiceService, private toast: NgToastService) { }
 
   exform!: FormGroup;
 
@@ -41,9 +42,9 @@ export class UpdateComponent implements OnInit {
     this.service.updateUser(user)
     .subscribe(data => {
       user = data;
-      alert("Update Thành Công!");
+      this.toast.success({summary:"Cập Nhật Thông Tin Cá Nhân Thành Công" , duration:3000});
       this.ngOnInit();
-    });
+    }, error => this.toast.error({summary:"Cập Nhật Thông Tin Cá Nhân Thấ Bại" , sticky: true}));
   }
 
   Reset() {

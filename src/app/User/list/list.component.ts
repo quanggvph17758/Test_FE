@@ -2,6 +2,7 @@ import { Component, OnInit, Pipe } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserModel } from 'src/app/Model/UserModel';
 import { UserServiceService } from '../../Service/user-service.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-list',
@@ -12,7 +13,7 @@ export class ListComponent implements OnInit {
 
   users:UserModel[]=[];
   fullname:any;
-  constructor(private userSer:UserServiceService, private router:Router) { }
+  constructor(private userSer:UserServiceService, private router:Router, private toast: NgToastService) { }
 
   ngOnInit() {
     this.userSer.getUser()
@@ -35,7 +36,7 @@ export class ListComponent implements OnInit {
     this.userSer.updateUser(user)
     .subscribe(data => {
       user = data;
-      alert("Kích Hoạt Thành Công!");
+      this.toast.success({summary:"Kích Hoạt Tài Khoản " + user.fullname + " Thành Công" , duration:3000});
       this.ngOnInit();
     });
   }
@@ -45,7 +46,7 @@ export class ListComponent implements OnInit {
     this.userSer.updateUser(user)
     .subscribe(data => {
       user = data;
-      alert("Khóa Tài Khoản Thành Công!");
+      this.toast.info({summary:"khóa Tài Khoản " + user.fullname + " Thành Công" , duration:3000});
       this.ngOnInit();
     });
   }
@@ -53,18 +54,18 @@ export class ListComponent implements OnInit {
   Delete(user:UserModel) {
     let u_id = sessionStorage.getItem("id");
     if (Number(u_id) == user.id) {
-      alert("Bạn không thể xóa tài khoản của chính mình");
+      this.toast.warning({summary:"Bạn Không Thể Xóa Tài Khoản Của Chính Mình" , duration:3000});
     } else {
-    this.userSer.deleteUser(user)
-    .subscribe(data => {
+      this.userSer.deleteUser(user)
+      .subscribe(data => {
         this.users=this.users.filter(u => u! == user);
-        alert("Xóa thành công!");
+        this.toast.success({summary:"Xóa Tài Khoản " + user.fullname + " Thành Công" , duration:3000});
         this.ngOnInit();
-    });
-  }
+      });
+    }
   }
 
-  Search(){
+  Search() {
     if (this.fullname == "") {
       this.ngOnInit();
     } else {
