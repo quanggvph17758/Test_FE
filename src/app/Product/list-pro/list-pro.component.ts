@@ -4,6 +4,7 @@ import { CategoryModel } from 'src/app/Model/CategoryModel';
 import { ProductModel } from 'src/app/Model/ProductModel';
 import { CategoryServiceService } from 'src/app/Service/category-service.service';
 import { ProductServiceService } from 'src/app/Service/product-service.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-list-pro',
@@ -16,7 +17,10 @@ export class ListProComponent implements OnInit {
   pros:ProductModel[] = [];
   name:any;
 
-  constructor(private proSer:ProductServiceService, private cateSer:CategoryServiceService, private router:Router) { }
+  constructor(private proSer:ProductServiceService,
+              private cateSer:CategoryServiceService,
+              private router:Router,
+              private toast: NgToastService) { }
 
   ngOnInit() {
     this.proSer.getPro()
@@ -39,9 +43,9 @@ export class ListProComponent implements OnInit {
     this.proSer.deletePro(pro)
     .subscribe(data => {
       this.pros=this.pros.filter(p => p! == pro);
-      alert("Xóa thành công!");
+      this.toast.success({summary:"Xóa Sản Phẩm " + pro.name + " Thành Công" , duration:3000});
       this.ngOnInit();
-    })
+    }, error => this.toast.error({summary:"Xóa Sản Phẩm Thất Bại" , duration:3000}));
   }
 
   Search(){

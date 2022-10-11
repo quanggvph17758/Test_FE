@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import { RoleModel } from 'src/app/Model/RoleModel';
 import { UserModel } from 'src/app/Model/UserModel';
 import { RoleServiceService } from 'src/app/Service/role-service.service';
@@ -21,7 +22,8 @@ export class CreateComponent implements OnInit {
 
   constructor(private router: Router,
               private service: UserServiceService,
-              private roleSer: RoleServiceService,) { }
+              private roleSer: RoleServiceService,
+              private toast: NgToastService ) { }
 
   exform!: FormGroup;
 
@@ -47,8 +49,8 @@ export class CreateComponent implements OnInit {
   save() {
     this.service.CreateUser(this.user)
     .subscribe(data => {
-      alert("Thêm thành công");
+      this.toast.success({summary:"Thêm Tài Khoản " + this.user.fullname + " Thành Công" , duration:3000});
       this.router.navigate(["list"]);
-    });
+    }, error => this.toast.error({summary:"Thêm Thất Bại", sticky:true}));
   }
 }

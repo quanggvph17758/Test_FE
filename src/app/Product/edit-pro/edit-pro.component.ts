@@ -6,6 +6,7 @@ import { ProductModel } from 'src/app/Model/ProductModel';
 import { CategoryServiceService } from 'src/app/Service/category-service.service';
 import { ProductServiceService } from 'src/app/Service/product-service.service';
 import { UploadImgService } from 'src/app/Service/upload-img.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-edit-pro',
@@ -19,7 +20,11 @@ export class EditProComponent implements OnInit {
   cate: CategoryModel = new CategoryModel();
   updateDate = new Date();
 
-  constructor(private proSer:ProductServiceService, private cateSer:CategoryServiceService, private router:Router, private uploadSer: UploadImgService) { }
+  constructor(private proSer:ProductServiceService,
+              private cateSer:CategoryServiceService,
+              private router:Router,
+              private uploadSer: UploadImgService,
+              private toast: NgToastService) { }
 
   exform!: FormGroup;
 
@@ -53,9 +58,9 @@ export class EditProComponent implements OnInit {
     this.proSer.updatePro(pro)
     .subscribe(data => {
       pro = data;
-      alert("Update Thành Công!");
+      this.toast.success({summary:"Cập Nhật Sản Phẩm " + pro.name + " Thành Công" , duration:3000});
       this.router.navigate(["list-pro"]);
-    });
+    }, error => this.toast.error({summary:"Cập Nhật Sản Phẩm Thất Bại" , sticky: true}));
   }
 
   Reset() {
@@ -63,9 +68,5 @@ export class EditProComponent implements OnInit {
     this.pro.images = "";
     this.pro.create_Date = new Date();
     this.pro.price = 0;
-  }
-
-  List() {
-    this.router.navigate(["list-pro"])
   }
 }

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { OrderModel } from 'src/app/Model/OrderModel';
 import { OrderServiceService } from 'src/app/Service/order-service.service';
 import { OrderdetailServiceService } from 'src/app/Service/orderdetail-service.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-your-oder',
@@ -15,7 +16,10 @@ export class YourOderComponent implements OnInit {
   order: OrderModel = new OrderModel();
   items: any = [];
 
-  constructor(private orderSer: OrderServiceService, private router: Router, private orderDeSer: OrderdetailServiceService) { }
+  constructor(private orderSer: OrderServiceService,
+              private router: Router,
+              private orderDeSer: OrderdetailServiceService,
+              private toast: NgToastService) { }
 
   ngOnInit(): void {
     let id = sessionStorage.getItem("id");
@@ -35,9 +39,9 @@ export class YourOderComponent implements OnInit {
     this.orderSer.update(order)
     .subscribe(data => {
       order = data;
-      alert("Hủy đơn hàng thành công");
+      this.toast.success({summary:"Hủy Đơn Hàng " + order.id + " Thành Công" , duration:3000});
       this.ngOnInit();
-    });
+    }, error =>  this.toast.error({summary:"Hủy Đơn Hàng Thất Bại" , sticky: true}));
   }
 
   page: number = 1;

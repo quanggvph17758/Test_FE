@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserModel } from './Model/UserModel';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ export class AppComponent {
 
   title = '';
 
-  constructor(private router: Router){}
+  constructor(private router: Router, private toast: NgToastService){}
 
   ngOnInit() {
 
@@ -23,6 +23,7 @@ export class AppComponent {
 
   logOut() {
     sessionStorage.clear();
+    this.toast.success({summary:"Đăng Xuất Thành Công" , duration:3000});
     this.router.navigate(["login"]);
   }
 

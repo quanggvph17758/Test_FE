@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoryModel } from 'src/app/Model/CategoryModel';
 import { CategoryServiceService } from 'src/app/Service/category-service.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-list-cate',
@@ -13,7 +14,7 @@ export class ListCateComponent implements OnInit {
   cates:CategoryModel[]=[];
   name:any;
 
-  constructor(private router:Router, private cateSer:CategoryServiceService) { }
+  constructor(private router:Router, private cateSer:CategoryServiceService, private toast: NgToastService) { }
 
   ngOnInit(): void {
     this.cateSer.getCate()
@@ -35,9 +36,9 @@ export class ListCateComponent implements OnInit {
     this.cateSer.deleteCate(cate)
     .subscribe(data => {
       this.cates=this.cates.filter(cate => cate! == cate);
-      alert("Xóa thành công!");
+      this.toast.success({summary:"Xóa Danh Mục Sản Phẩm " + cate.name + " Thành Công" , duration:3000});
       this.ngOnInit();
-    })
+    }, error =>  this.toast.error({summary:"Xóa Danh Mục Sản Phẩm Thất Bại" , sticky: true}));
   }
 
   Search(){

@@ -8,6 +8,7 @@ import { OrderServiceService } from 'src/app/Service/order-service.service';
 import { OrderDetailModel } from '../../Model/OrderDetailModel';
 import { CartServiceService } from '../../Service/cart-service.service';
 import { OrderdetailServiceService } from '../../Service/orderdetail-service.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -29,7 +30,8 @@ export class ShoppingCartComponent implements OnInit {
   constructor(private cartService: CartServiceService,
               private orderSer: OrderServiceService,
               private orderDeSer: OrderdetailServiceService,
-              private router: Router) { }
+              private router: Router,
+              private toast: NgToastService) { }
 
   ngOnInit(): void {
       this.cartService.loadCart();
@@ -58,7 +60,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   getItem() {
-    return sessionStorage.getItem("item");
+    return localStorage.getItem("cart_items");
   }
 
   saveCart() {
@@ -68,10 +70,20 @@ export class ShoppingCartComponent implements OnInit {
   removeFromCart(item: any) {
     this.cartService.removeItem(item);
     sessionStorage.removeItem("item");
+    this.toast.success({summary:"Xóa Sản Phẩm " + item.name + " Khỏi Giỏ Hàng Thành Công" , duration:3000});
     this.items = this.cartService.getItems();
+    this.ngOnInit();
   }
 
   clearCart(items: any) {
+    this.cartService.clearCart(items);
+    sessionStorage.removeItem("item");
+    this.items = [this.cartService.getItems()];
+    this.toast.success({summary:"Xóa Tất Cả Sản Phẩm Khỏi Giỏ Hàng Thành Công" , duration:3000});
+    this.ngOnInit();
+  }
+
+  clearCartAll(items: any) {
     this.cartService.clearCart(items);
     sessionStorage.removeItem("item");
     this.items = [this.cartService.getItems()];
@@ -92,10 +104,10 @@ export class ShoppingCartComponent implements OnInit {
         this.orderDe.quantity = item.quantity;
       this.orderDeSer.createOrderDetail(this.orderDe)
       .subscribe(data => {
-        this.clearCart(data);
+        this.clearCartAll(data);
       })});
-    });
-    alert("Đặt hàng thành công");
-    this.router.navigate(["home"]);
+      this.toast.success({summary:"Đặt Hàng Thành Công" , duration:3000});
+      this.router.navigate(["home"]);
+    }, error =>  this.toast.error({summary:"Đặt Hàng Thất Bại" , sticky: true}));
   }
 }

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CategoryModel } from 'src/app/Model/CategoryModel';
 import { CategoryServiceService } from 'src/app/Service/category-service.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-edit-cate',
@@ -14,7 +15,7 @@ export class EditCateComponent implements OnInit {
   cate:CategoryModel = new CategoryModel();
   updateDate = new Date();
 
-  constructor(private router:Router, private cateSer:CategoryServiceService) { }
+  constructor(private router:Router, private cateSer:CategoryServiceService, private toast: NgToastService) { }
 
   exform!: FormGroup;
 
@@ -40,17 +41,12 @@ export class EditCateComponent implements OnInit {
     this.cateSer.updateCate(cate)
     .subscribe(data => {
       cate = data;
-      alert("Update Thành Công!");
+      this.toast.success({summary:"Cập Nhật Danh Mục Sản Phẩm " + cate.name + " Thành Công" , duration:3000});
       this.router.navigate(["list-cate"]);
-    });
+    }, error =>  this.toast.error({summary:"Cập Nhật Danh Mục Sản Phẩm Thất Bại" , duration:3000}));
   }
 
   Reset() {
     this.cate.name = "";
   }
-
-  List() {
-    this.router.navigate(["list-cate"])
-  }
-
 }

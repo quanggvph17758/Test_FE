@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RoleModel } from '../Model/RoleModel';
+import { NgToastService } from 'ng-angular-popup';
 import { UserModel } from '../Model/UserModel';
 import { LoginServiceService } from '../Service/login-service.service';
 
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   exform!: FormGroup;
 
-  constructor(private lgService:LoginServiceService, private router:Router) { }
+  constructor(private lgService:LoginServiceService, private router:Router, private toast: NgToastService) { }
 
   ngOnInit(): void {
     this.exform = new FormGroup({
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     this.lgService.login(this.user)
     .subscribe(data => {
       if (data.active == "0") {
-        alert("Tài khoản của bạn đã bị khóa");
+        this.toast.warning({summary:"Tài Khoản Của Bạn Đã Bị Khóa" , duration:3000});
         this.user.email = "";
         this.user.password = "";
       } else {
@@ -39,9 +39,9 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem("role", data.role_id.id);
       sessionStorage.setItem("address", data.address);
       sessionStorage.setItem("email", data.email);
-      alert("Đăng Nhập Thành Công!");
+      this.toast.success({summary:"Đăng Nhập Thành Công" , duration:3000});
       this.router.navigate(['home']);
       }
-    }, error => alert("Đăng nhập thất bại!"));
+    }, error => this.toast.error({summary:"Đăng Nhập Thất Bại" , sticky: true}));
   }
 }
